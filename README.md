@@ -72,18 +72,20 @@ Si encuentras algún problema durante la configuración o ejecución del proyect
 
 
 La clínica veterinaria “Los animalitos” solicita una aplicación que le permita administrar todas sus consultas y pacientes.
-
-•	Se requiere que los usuarios de la solución puedan iniciar sesión mediante un usuario y contraseña. Ningún usuario podrá visualizar ninguna pantalla ni realizar ninguna consulta si no ha sido validado su usuario y contraseña. 
+<p>
+•	Se requiere que los usuarios de la solución puedan iniciar sesión mediante un usuario y contraseña. Ningún usuario podrá visualizar ninguna pantalla ni realizar ninguna consulta si no ha sido validado su usuario y contraseña. <br/>
 •	Se requiere una pantalla que permita el registro de los datos más importantes de los clientes (humanos).
+<br/>
 •	Se requiere una pantalla que permita el registro de los pacientes.
-•	Se requiere una pantalla que permita generar una cita. Se debe registrar fecha, hora, veterinario asignado (no le deben chocar sus consultas), motivo de la consulta. Esta pantalla será utilizada por la persona recepcionista de la clínica.
-•	Se requiere una pantalla en la que el veterinario pueda registrar su diagnóstico, sus indicaciones y el medicamento recetado. Cada veterinario solo podrá ver la lista de pacientes asignados.
-•	Se requiere una pantalla donde la persona encargada de recepción pueda dar de alta al paciente y hacer el cobro respectivo al cliente. Esta pantalla solo la podrá visualizar el usuario con el privilegio.
-•	Los clientes pueden solicitar la programación de futuras citas (no necesariamente deben asignar al veterinario).
-•	Se requiere un módulo para la generación de reportes. Este módulo solo lo podrá visualizar un usuario con el privilegio.
-•	El historial médico de cada paciente debe quedar registrado y disponible siempre
+<br/>
+•	Se requiere una pantalla que permita generar una cita. Se debe registrar fecha, hora, veterinario asignado (no le deben chocar sus consultas), motivo de la consulta. Esta pantalla será utilizada por la persona recepcionista de la clínica.<br/>
+•	Se requiere una pantalla en la que el veterinario pueda registrar su diagnóstico, sus indicaciones y el medicamento recetado. Cada veterinario solo podrá ver la lista de pacientes asignados.<br/>
+•	Se requiere una pantalla donde la persona encargada de recepción pueda dar de alta al paciente y hacer el cobro respectivo al cliente. Esta pantalla solo la podrá visualizar el usuario con el privilegio.<br/>
+•	Los clientes pueden solicitar la programación de futuras citas (no necesariamente deben asignar al veterinario).<br/>
+•	Se requiere un módulo para la generación de reportes. Este módulo solo lo podrá visualizar un usuario con el privilegio.<br/>
+•	El historial médico de cada paciente debe quedar registrado y disponible siempre<br/>
 
-
+</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
