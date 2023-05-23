@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         
-            $adminRole = Role::create(['name' => 'Administrator']);
+            $adminRole = Role::create(['name' => 'Administrador']);
             $veterinarioRole=Role::create(['name' => 'Veterinario']);
             $recepcionRole=Role::create(['name' => 'Recepcion']);
             $permission = Permission::create(['name' => 'crearusuarios']);
@@ -34,7 +34,7 @@ class AdminUserSeeder extends Seeder
                 'email' => 'adminvt@yopmail.com',
                 'password' => bcrypt('123456789')
             ]);
-            $adminUser->assignRole('Administrator');
+            $adminUser->assignRole('Administrador');
 
             $recepcionUser  = User::factory()->create([
                 'email' => 'recepcionvt@yopmail.com',

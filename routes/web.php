@@ -23,6 +23,20 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $user = auth()->user();
+        
+        if ($user->hasRole('Administrador')) {
+            return Redirect::route('admin.dashboard');
+        } elseif ($user->hasRole('Recepcion')) {
+            return Redirect::route('recepcion.dashboard');
+        } else {
+            return Redirect::route('dashboard');
+        }
     })->name('dashboard');
+
+    Route::get('/recepcion/dashboard', function () {
+        // Lógica para la ruta user.dashboard
+        return view('recepcion.dashboard');
+    })->name('recepcion.dashboard');
 });
+
