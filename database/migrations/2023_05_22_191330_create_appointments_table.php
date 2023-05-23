@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pet_id');
             $table->foreign('pet_id')->references('id')->on('pets');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->enum('status', ['Activo', 'Cerrado', 'Cancelado']);
             $table->dateTime('date_start');
             $table->dateTime('date_end');
             $table->string('reason');
-            $table->integer('type');
+            $table->enum('type', ['Consulta', 'Emergencia']);
             $table->timestamps();
         });
     }

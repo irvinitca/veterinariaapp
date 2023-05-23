@@ -11,16 +11,30 @@ class Appointment extends Model
     
     protected $fillable = [
         'pet_id',
-        'rate_id',
+        'user_id',
+        'status',
         'date_start',
         'date_end',
         'reason',
         'type',
     ];
-
+    public function getTypeLabel()
+    {
+        $types = [
+            1 => 'Consulta',
+            2 => 'Emergencia',
+        ];
+    
+        return $types[$this->type] ?? 'Desconocido';
+    }
     public function pet()
     {
         return $this->belongsTo(Pet::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function rate()

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Appointment;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +36,13 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/recepcion/dashboard', function () {
-        // Lógica para la ruta user.dashboard
-        return view('recepcion.dashboard');
+        $appointments = Appointment::orderByDesc('date_start')->paginate(10);
+        return view('recepcion.dashboard', compact('appointments'));
     })->name('recepcion.dashboard');
+    
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
