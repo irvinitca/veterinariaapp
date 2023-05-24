@@ -138,7 +138,11 @@ MySQL
    ```sh
    php artisan db:seed
    ```
-6. Correr Servidor
+6. Instalar
+  ```sh
+   npm install && npm run build
+  ```
+7. Correr Servidor
    ```sh
    php artisan serve
    ```
