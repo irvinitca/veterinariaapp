@@ -21,8 +21,7 @@ class HistoriesSeeder extends Seeder
                 'appointment_id' => $appointment->id,
                 'date_resolved' => now()->subDays(1),
                 'services' => 'consulta',
-                'diagnostic' => 'Diagnóstico para la cita ' . $appointment->id,
-                'total' => 100
+                'diagnostic' => 'Diagnóstico para la cita ' . $appointment->id
             ]);
         }
     }

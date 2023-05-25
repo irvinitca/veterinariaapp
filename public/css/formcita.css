@@ -6,10 +6,16 @@
 }
 
  .signup-container {
-	margin: 5%;
+	 margin: 2% 2% 0% 2%;
 	 display: grid;
 	 grid-template-areas: "left right";
 	 max-width: 100%;
+}
+.formdiv{
+	margin: 0rem 2rem 0rem 2rem;
+}
+.select2-hidden-accessible{
+	position: inherit!important;
 }
  .left-container {
 	 background: #324960;
@@ -63,49 +69,12 @@
 	 font-size: 28px;
 	 font-weight: 600;
 }
- .right-container .set {
-	 display: flex;
-	 justify-content: space-between;
-	 margin: 10px 0;
-}
- .right-container select {
-	 border: 1px solid rgba(0, 0, 0, .1);
-	 border-radius: 4px;
-	 height: 38px;
-	 line-height: 38px;
-	 padding-left: 5px;
-}
- .right-container input, .right-container label {
-	 color: rgba(0, 0, 0, .8);
-}
+
+
  .right-container header {
 	 padding: 40px;
 }
- .right-container label, .right-container input, .right-container .pets-photo {
-	 width: 176px;
-}
- .right-container .pets-photo {
-	 align-items: center;
-	 display: grid;
-	 grid-template-areas: ". .";
-}
- .right-container .pets-photo button {
-	 border: none;
-	 border-radius: 50%;
-	 height: 38px;
-	 margin-right: 10px;
-	 outline: none;
-	 width: 38px;
-}
- .right-container .pets-photo button i {
-	 color: rgba(0, 0, 0, .8);
-	 font-size: 16px;
-}
- .right-container .pets-weight .radio-container {
-	 display: flex;
-	 justify-content: space-between;
-	 width: 100%;
-}
+
  .right-container .setfooter {
 	 align-items: center;
 	 background: #fff;

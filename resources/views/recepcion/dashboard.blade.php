@@ -46,7 +46,7 @@
                     <td>{{ $appointment->pet->name }}</td>
                     <td>{{ $appointment->type }}</td>
                     <td>{{ $appointment->reason }}</td>
-                    <td>{{ $appointment->user->name }}</td>
+                    <td>{{ $appointment->user?->name }}</td>
                 </tr>
             @endforeach
         </tbody>
