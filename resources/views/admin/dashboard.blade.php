@@ -14,12 +14,11 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <h2>Registro de Usuarios </h2>
+            <h2>Registro de Usuarios</h2>
         </div>
         <div class="col-md-3">
             <a href="{{ route('citas.nueva') }}" class="button-33">Crear Nuevo Usuario</a>
         </div>
-
     </div>
 
 </div>
@@ -27,18 +26,23 @@
         <table class="fl-table">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Nombre de Usuario</th>
+                <th>Email</th>
+                <th>Tipo de Usuario</th>
             </tr>
         </thead>
         <tbody>
-
+            @foreach ($users as $user)
                 <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
                     <td></td>
                 </tr>
-
+            @endforeach
         </tbody>
     </table>
+
+    {{ $users->links() }}
+
 </div>
 </x-app-layout>
