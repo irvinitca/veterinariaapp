@@ -139,9 +139,9 @@ MySQL
    php artisan db:seed
    ```
 6. Instalar
-  ```sh
+   ```sh
    npm install && npm run build
-  ```
+   ```
 7. Correr Servidor
    ```sh
    php artisan serve

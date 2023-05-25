@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Appointment;
-
+use App\Http\Controllers\AppointmentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,18 +27,17 @@ Route::middleware([
         $user = auth()->user();
         
         if ($user->hasRole('Administrador')) {
-            return Redirect::route('admin.dashboard');
+            return Redirect::route('citas');
         } elseif ($user->hasRole('Recepcion')) {
-            return Redirect::route('recepcion.dashboard');
+            return Redirect::route('citas');
         } else {
             return Redirect::route('dashboard');
         }
     })->name('dashboard');
 
-    Route::get('/recepcion/dashboard', function () {
-        $appointments = Appointment::orderByDesc('date_start')->paginate(10);
-        return view('recepcion.dashboard', compact('appointments'));
-    })->name('recepcion.dashboard');
+    Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
+    Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');
+    Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
     
 });
 
