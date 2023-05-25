@@ -13,26 +13,25 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth
-                        @if (auth()->user()->hasRole('Recepcion'))
+                        @if (auth()->user()->hasRole('Administrador'))
+                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                                {{ __('Clientes') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                                {{ __('Mascotas') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                                {{ __('Agregar Roles') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
+                    @auth
+                        @if (auth()->user()->hasRole('Recepcion') || auth()->user()->hasRole('Administrador'))
                             <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                                 {{ __('Citas') }}
                             </x-nav-link>
                         @endif
                     @endauth
-                    @auth
-                        @if (auth()->user()->hasRole('Administrador'))
-                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')"--}}>
-                                {{ __('Clientes') }}
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')"--}}>
-                                {{ __('Mascotas') }}
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')"--}}>
-                                {{ __('Agregar Roles') }}
-                            </x-nav-link>
-                        @endif
-                    @endauth
-
                 </div>
             </div>
 
