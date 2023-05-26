@@ -16,9 +16,7 @@
         <div class="col-md-6">
             <h2>Pacientes Asignados a Dr./Dra:   {{ auth()->user()->name }} </h2>
         </div>
-        <div class="col-md-3">
-            <a href="" class="button-33">Generar Diagnostico de Consulta</a>
-        </div>
+
     </div>
 
 </div>
