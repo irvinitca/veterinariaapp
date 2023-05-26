@@ -59,12 +59,13 @@
                     <div class="form-group">
                         <label for="role_id"></label>
                         <select name="role_id" id="role_id" class="form-control select2">
-                                <option value="" disabled selected>Seleccionar tipo de Usuario</option>
+                            <option value="" disabled selected>Seleccionar tipo de Usuario</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
+
 
                     <div class="setfooter">
                         <button id="back">Cancelar</button>
