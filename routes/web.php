@@ -41,6 +41,7 @@ Route::middleware([
 
     Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/usuarios-nuevos', [UserController::class, 'create'])->name('admin.usuarios-nuevos');
+    Route::post('/users.store', [UserController::class, 'store'])->name('users.store');
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');

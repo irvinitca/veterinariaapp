@@ -16,34 +16,36 @@
           </div>
         </div>
         <div class="right-container">
+
           <header>
             <h1>Creacion de Nuevo Usuario</h1>
             </header>
+
             <div class="formdiv">
-              <form action="{{ route('admin.dashboard') }}" method="POST">
+              <form action="{{ route('users.store') }}" method="POST">
                 @csrf
 
                 <div class="form-group">
-                    <label for="reason">Motivo:</label>
-                    <textarea name="reason" id="reason" class="form-control" rows="3" required></textarea>
+                    <label for="reason">Nombre:</label>
+                    <input name="reason" id="reason" class="form-control" rows="3" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="reason">Motivo:</label>
-                    <textarea name="reason" id="reason" class="form-control" rows="3" required></textarea>
+                    <label for="reason">Correo Electrónico:</label>
+                    <input name="reason" id="reason" class="form-control" rows="3" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="reason">Motivo:</label>
-                    <textarea name="reason" id="reason" class="form-control" rows="3" required></textarea>
+                    <label for="reason">password:</label>
+                    <input name="reason" id="reason" class="form-control" rows="3" required>
                 </div>
 
                 <div class="form-group">
-                    <label  for="pet_id">Rol de Usuario:</label>
-                    <select name="pet_id" class="form-control select2">
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $pet->name }}</option>
-                        @endforeach
+                    <label  for="role_id">Rol de Usuario:</label>
+                    <select name="role_id" class="form-control select2">
+                      {{--   @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach --}}
                     </select>
                 </div>
 
