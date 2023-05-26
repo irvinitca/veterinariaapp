@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.creacion-users');
+        return view('admin.usuarios-nuevos');
     }
 
     /**
