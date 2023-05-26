@@ -30,7 +30,7 @@ class AppointmentsController extends Controller
     {
         $pets = Pet::all();
         $users = User::all();
-    
+     
         return view('recepcion.creacion-citas', compact('pets', 'users'));
     }
     
@@ -40,9 +40,9 @@ class AppointmentsController extends Controller
         $validatedData = $request->validate([
             'pet_id' => 'required',
             'user_id' => 'nullable',
-            'status' => 'required',
+            'status' => 'nullable',
             'date_start' => 'required|date',
-            'date_end' => 'required|date',
+            'date_end' => 'nullable|date',
             'reason' => 'required',
             'type' => 'required',
         ]);
@@ -51,15 +51,14 @@ class AppointmentsController extends Controller
         $appointment = new Appointment();
         $appointment->pet_id = $request->input('pet_id');
         $appointment->user_id = $request->input('user_id');
-        $appointment->status = $request->input('status');
+        $appointment->status = 'Activo';
         $appointment->date_start = $request->input('date_start');
-        $appointment->date_end = $request->input('date_end');
         $appointment->reason = $request->input('reason');
         $appointment->type = $request->input('type');
         $appointment->save();
     
         // Redireccionar a la vista de lista de citas con un mensaje de éxito
-        return redirect()->route('appointments')->with('success', 'La cita ha sido creada exitosamente.');
+        return redirect()->route('citas')->with('success', 'La cita ha sido creada exitosamente.');
     }
     
 }

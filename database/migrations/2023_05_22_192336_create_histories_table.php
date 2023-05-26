@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('date_resolved');
             $table->text('diagnostic');
             $table->text('services');
-            $table->decimal('total', 8, 2);
             $table->timestamps();
         });
     }

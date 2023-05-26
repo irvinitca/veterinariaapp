@@ -26,7 +26,6 @@ class AppointmentsSeeder extends Seeder
                 'user_id' => $users->random(),
                 'status' => ['Activo', 'Cerrado', 'Cancelado'][rand(0, 2)],
                 'date_start' => now()->addDays($i),
-                'date_end' => now()->addDays($i)->addHours(2),
                 'reason' => 'Motivo ' . $i,
                 'type' => ['Consulta', 'Emergencia'][rand(0, 1)],
             ]);

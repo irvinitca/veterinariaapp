@@ -19,9 +19,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('status', ['Activo', 'Cerrado', 'Cancelado']);
             $table->dateTime('date_start');
-            $table->dateTime('date_end');
+            $table->dateTime('date_end')->nullable();
             $table->string('reason');
             $table->enum('type', ['Consulta', 'Emergencia']);
+            $table->decimal('total', 8, 2)->nullable();
             $table->timestamps();
         });
     }
