@@ -77,9 +77,20 @@
 
  .right-container .setfooter {
 	 align-items: center;
-	 background: #fff;
-	 display: grid;
+	 display: inline-block;
 	 padding: 5px 40px;
+}
+.select2-container{
+	width: 100% !important;
+	max-width: 46rem;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b{
+	margin-top: 2px;
+}
+.select2-selection{
+	height: 36px!important;
+    padding-top: 0.5%!important;
+    padding-left: 1%!important;
 }
  .right-container .setfooter button {
 	 border: 1px solid rgba(0, 0, 0, .2);
@@ -99,6 +110,7 @@
 }
  .right-container .setfooter #next {
 	 background: #807182;
+	 padding: 0rem;
 	 border: 1px solid transparent;
 	 color: #fff;
 }

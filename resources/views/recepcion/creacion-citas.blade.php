@@ -56,7 +56,7 @@
                 
                 <div class="form-group">
                     <label for="user_id">Veterinario:</label>
-                    <select name="user_id" id="user_id" class="form-control">
+                    <select name="user_id" id="user_id" class="form-control select2">
                         <option value="">Sin asignar</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -64,7 +64,7 @@
                     </select>
                 </div>
                 <div class="setfooter">
-                  <button id="back">Back</button>
+                  <button id="back">Cancelar</button>
                   <button id="next" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
