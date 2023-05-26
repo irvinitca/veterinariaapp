@@ -44,6 +44,7 @@ Route::middleware([
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');
     Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
+    Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
 
 });
 
