@@ -18,7 +18,7 @@
         <div class="right-container">
 
           <header>
-            <h1>Creacion de Nuevo Usuario</h1>
+            <h1>Crear de Nuevo Usuario</h1>
             </header>
 
             <div class="formdiv">
@@ -102,16 +102,15 @@
             </script>
         </div>
       </div>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
 </div>
 
 

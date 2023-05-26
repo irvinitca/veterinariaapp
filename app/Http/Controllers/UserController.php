@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rule;
+
 
 class UserController extends Controller
 {
@@ -46,7 +48,11 @@ class UserController extends Controller
             // Validando los datos del formulario
     $validatedData = $request->validate([
         'name' => 'required',
-        'email' => 'required|email',
+        'email' => [
+            'required',
+            'email',
+            Rule::unique('users'),
+        ],
         'password' => 'required',
         'password' => 'required|confirmed',
         'role_id' => 'required',

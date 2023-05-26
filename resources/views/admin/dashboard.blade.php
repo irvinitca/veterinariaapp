@@ -29,6 +29,8 @@
                 <th>Nombre de Usuario</th>
                 <th>Email</th>
                 <th>Tipo de Usuario</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +42,15 @@
                         @foreach ($user->roles as $role)
                             {{ $role->name }}
                         @endforeach
+                    </td>
+                    <td>{{ $user->created_at }}</td>
+                    <td>
+                        <a href="" class="btn btn-primary">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </a>
+                        <a href="#" onclick="" class="btn btn-secondary">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
