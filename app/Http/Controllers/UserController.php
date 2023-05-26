@@ -34,9 +34,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::all();
         $roles = Role::all();
-        return view('admin.usuarios-nuevos', compact('roles', 'users'));
+        return view('admin.usuarios-nuevos', compact('roles'));
     }
 
     /**
@@ -44,7 +43,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            // Validando los datos del formulario
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'required',
+        'role_id' => 'required',
+    ]);
+
+    // Creando el nuevo user con los datos proporcionados
+    $user = new User();
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    $user->password = bcrypt($request->input('password'));
+    $user->save();
+
+    // Asigna el rol al nuevo usuario
+    $role = Role::findOrFail($request->input('role_id'));
+    $user->assignRole($role);
+
+    return redirect()->route('admin.dashboard')->with('success', 'Nuevo usuario creado exitosamente.');
     }
 
     /**

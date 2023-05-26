@@ -26,18 +26,18 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="reason">Nombre:</label>
-                    <input name="reason" id="reason" class="form-control" rows="3" required>
+                    <label for="name">Nombre:</label>
+                    <input name="name" id="name" class="form-control" rows="3" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="reason">Correo Electrónico:</label>
-                    <input name="reason" id="reason" class="form-control" rows="3" required>
+                    <label for="email">Correo Electrónico:</label>
+                    <input name="email" id="email" class="form-control" rows="3" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="reason">password:</label>
-                    <input name="reason" id="reason" class="form-control" rows="3" required>
+                    <label for="password">password:</label>
+                    <input name="password" id="password" class="form-control" rows="3" required>
                 </div>
 
                 <div class="form-group">
