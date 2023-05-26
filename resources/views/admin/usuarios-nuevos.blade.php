@@ -22,7 +22,57 @@
             </header>
 
             <div class="formdiv">
-              <form action="{{ route('users.store') }}" method="POST">
+                <form action="{{ route('users.store') }}" method="POST">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input name="name" id="name" class="form-control" rows="3" required value="{{ old('name') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input name="email" id="email" class="form-control" rows="3" required value="{{ old('email') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input name="password" id="password" type="password" class="form-control" rows="3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirmar Contraseña:</label>
+                        <input name="password_confirmation" id="password_confirmation" type="password" class="form-control" rows="3" required>
+                    </div>
+                    @if ($errors->has('password') || $errors->has('password_confirmation'))
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->get('password') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                @foreach ($errors->get('password_confirmation') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="form-group">
+                        <label for="role_id"></label>
+                        <select name="role_id" id="role_id" class="form-control select2">
+                                <option value="" disabled selected>Seleccionar tipo de Usuario</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="setfooter">
+                        <button id="back">Cancelar</button>
+                        <button id="next" type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+
+             {{--   <form action="{{ route('users.store') }}" method="POST">
                 @csrf
 
                 <div class="form-group">
@@ -54,7 +104,7 @@
                   <button id="back">Cancelar</button>
                   <button id="next" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-            </form>
+            </form>--}}
             </div>
 
         </div>
