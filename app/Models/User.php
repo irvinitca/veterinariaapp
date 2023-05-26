@@ -61,5 +61,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
+    //método belongsToMany especifica la tabla pivot que relaciona los usuarios y los roles
+        // obtiene los roles asignados a un usuario.
+    public function role()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }
