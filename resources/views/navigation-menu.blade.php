@@ -15,20 +15,23 @@
                     @auth
                         @if (auth()->user()->hasRole('Administrador'))
                             <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
-                                {{ __('Clientes') }}
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
-                                {{ __('Mascotas') }}
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
-                                {{ __('Agregar Roles') }}
+                                {{ __('Reportes') }}
                             </x-nav-link>
                         @endif
                     @endauth
                     @auth
-                        @if (auth()->user()->hasRole('Recepcion') || auth()->user()->hasRole('Administrador'))
+                        @if (auth()->user()->hasRole('Recepcion'))
                             <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                                 {{ __('Citas') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                                {{ __('Pagos') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                                {{ __('Clientes') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                                {{ __('Mascotas') }}
                             </x-nav-link>
                         @endif
                     @endauth
@@ -119,13 +122,13 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Administrar Cuenta') }}
-                            </div>
+                          {{--  <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Administrar') }}
+                            </div>  --}}
 
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                           {{-- <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Cuenta') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link> --}}
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">
