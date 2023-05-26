@@ -11,6 +11,11 @@
 	 grid-template-areas: "left right";
 	 max-width: 100%;
 }
+.logovet{
+    width: 20%!important;
+    height: auto!important;
+    margin-left: 40%!important;
+    filter: drop-shadow(2px 4px 6px black)!important;}
 .formdiv{
 	margin: 0rem 2rem 0rem 2rem;
 }
@@ -148,4 +153,3 @@
 	 background: #f7b1ab;
 	 border: 1px solid rgba(0, 0, 0, .1);
 }
- 

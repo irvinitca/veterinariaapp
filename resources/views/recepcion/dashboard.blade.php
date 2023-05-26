@@ -4,15 +4,15 @@
 <x-app-layout>
     <head>
         <!-- Otras etiquetas y metadatos -->
-    
+
         <!-- Vincular el archivo CSS -->
         <link href="{{ asset('css/table.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Otras etiquetas y metadatos -->
     </head>
-    
+
 <div class="container">
-   
+
     <div class="row">
         <div class="col-md-3">
         </div>
@@ -24,7 +24,7 @@
         </div>
 
     </div>
-   
+
 </div>
     <div class="table-wrapper">
         <table class="fl-table">
@@ -47,11 +47,26 @@
                     <td>{{ $appointment->type }}</td>
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
+                    <td>
+                        <a href="{{ route('citas.editar', ['id' => $appointment->id]) }}" class="btn btn-primary">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </a>
+                        <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    
+
     {{ $appointments->links() }}
 </div>
+<script>
+    function confirmCancel(id) {
+        if (confirm("¿Estás seguro de que deseas cancelar esta cita?")) {
+            // Aquí puedes agregar la lógica para enviar una solicitud de eliminación al servidor
+        }
+    }
+</script>
 </x-app-layout>

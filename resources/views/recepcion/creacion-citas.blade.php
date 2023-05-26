@@ -8,7 +8,7 @@
     <div class="signup-container">
         <div class="left-container">
           <h1>
-            <i class="fas fa-paw"></i>
+            <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
             VeterinariaCIO
           </h1>
           <div class="puppy">
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                     <label for="reason">Motivo:</label>
-                    <textarea name="reason" id="reason" class="form-control" rows="3" required></textarea>
+                    <textarea name="reason" id="reason" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -64,12 +64,16 @@
                     </select>
                 </div>
                 <div class="setfooter">
-                  <button id="back">Cancelar</button>
+                  <button id="back" type="button">Cancelar</button>
                   <button id="next" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
             </div>
-
+            <script>
+                document.getElementById("back").addEventListener("click", function() {
+                    window.location.href = "/dashboard";
+                });
+            </script>
 
 
 
