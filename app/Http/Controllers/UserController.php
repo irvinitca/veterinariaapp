@@ -18,7 +18,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
         if ($user->hasRole('Administrador')) {
-            $users = User::with('roles')->orderByDesc('created_at')->paginate(10);
+            $users = User::with('roles')
+            ->where('estado', true)
+            ->orderByDesc('created_at')
+            ->paginate(10);
             return view('admin.dashboard', compact('users'));
         } elseif ($user->hasRole('Recepcion')) {
             $appointments = Appointment::orderByDesc('date_start')->paginate(10);
@@ -117,7 +120,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $user->delete();
+        $user->estado=false;
+        $user->save();
+
         return redirect('/admin/dashboard');
 
     }

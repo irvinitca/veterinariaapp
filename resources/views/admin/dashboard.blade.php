@@ -51,7 +51,7 @@
                         </a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" href="#" onclick="" class="btn btn-secondary">
+                        <button type="submit" href="#" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-secondary">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </td>
