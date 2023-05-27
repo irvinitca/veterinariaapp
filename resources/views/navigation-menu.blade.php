@@ -14,9 +14,29 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth
                         @if (auth()->user()->hasRole('Administrador'))
-                            <x-nav-link href="{{ route('admin.dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
-                                {{ __('Reportes') }}
-                            </x-nav-link>
+                        <x-dropdown  width="80">
+                            <x-slot name="trigger">
+                            <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
+
+
+                            </x-slot>
+                            <x-slot name="content">
+                                <div class="w-60">
+                                    <x-dropdown-link target="_blank" href="{{ route('admin.generate-pdf-pat') }}" >
+                                        {{ __('Reporte Paciente Por Veterinarios') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
+                                        {{ __('Reporte X') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
+                                        {{ __('Reporte Y') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
+                                        {{ __('Reporte Z') }}
+                                    </x-dropdown-link>
+                                </div>
+                            </x-slot>
+                        </x-dropdown>
                         @endif
                     @endauth
                     @auth
