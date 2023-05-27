@@ -83,9 +83,12 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $roles = Role::all();
+
+        return view('admin.usuarios-editar', compact('user', 'roles'));
     }
 
     /**
@@ -93,14 +96,29 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+    // actualizando el user
+    $user = User::find($id);
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    $user->password = bcrypt($request->input('password'));
+    $user->save();
+
+    // Asigna el rol al nuevo usuario
+    $role = Role::findOrFail($request->input('role_id'));
+    $user->assignRole($role);
+
+    return redirect()->route('admin.dashboard')->with('success', 'Usuario actualizado exitosamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/admin/dashboard');
+
     }
 }

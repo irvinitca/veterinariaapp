@@ -45,12 +45,15 @@
                     </td>
                     <td>{{ $user->created_at }}</td>
                     <td>
-                        <a href="" class="btn btn-primary">
+                <form id="form-eliminar" action="{{ route ('users.destroy', $user->id)}}" method="POST">
+                        <a href="/users/{{$user->id}}/edit" class="btn btn-primary">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>
-                        <a href="#" onclick="" class="btn btn-secondary">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" href="#" onclick="" class="btn btn-secondary">
                             <i class="fa-solid fa-xmark"></i>
-                        </a>
+                        </button>
                     </td>
                 </tr>
             @endforeach
