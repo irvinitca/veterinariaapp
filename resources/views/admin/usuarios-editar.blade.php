@@ -2,6 +2,10 @@
     <head>
         <!-- Vincular el archivo CSS -->
         <link href="{{ asset('css/formcita.css') }}" rel="stylesheet">
+        <!-- CSS de select2 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+        <!-- JavaScript de select2 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     </head>
     <div class="container">
@@ -83,7 +87,7 @@
                         <select name="role_id" id="role_id" class="form-control select2">
                             <option value="" disabled selected>Seleccione</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -115,9 +119,8 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.select2').select2();
-
     });
 </script>
 </x-app-layout>
