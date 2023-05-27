@@ -22,7 +22,7 @@
             </header>
 
             <div class="formdiv">
-                <form action="/users/{{ $user->id }}/edit" method="POST">
+                <form action="/users/{{ $user->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">

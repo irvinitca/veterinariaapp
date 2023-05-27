@@ -43,9 +43,8 @@ Route::middleware([
     Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/usuarios-nuevos', [UserController::class, 'create'])->name('admin.usuarios-nuevos');
     Route::post('/users.store', [UserController::class, 'store'])->name('users.store');
-    Route::get('/admin.usuarios-editar', [UserController::class, 'update'])->name('users.editar');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}/', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
