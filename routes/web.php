@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Appointment;
 use App\Models\User;
 use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,8 @@ Route::middleware([
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');
     Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
-    Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+    Route::get('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
+    Route::get('/admin/generate-pdf-users', [PDFController::class, 'generatePDFUsers'])->name('admin.generate-pdf-users');
     Route::get('/appointments.update', [AppointmentsController::class, 'update'])->name('citas.editar');
 });
 

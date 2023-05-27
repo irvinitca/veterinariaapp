@@ -31,7 +31,7 @@
 	 width: 100%;
 }
  .left-container h1 {
-	 color: rgba(0, 0, 0, .8);
+    color: rgb(243 244 246);
 	 display: inline-block;
 	 font-size: 24px;
 }
@@ -70,7 +70,7 @@
 	 width: 100%;
 }
  .right-container h1:nth-of-type(1) {
-	 color: rgba(0, 0, 0, .8);
+  color: rgb(243 244 246);
 	 font-size: 28px;
 	 font-weight: 600;
 }
@@ -114,7 +114,6 @@
 	 color: white;
 }
  .right-container .setfooter #next {
-	 background: #807182;
 	 padding: 0rem;
 	 border: 1px solid transparent;
 	 color: #fff;

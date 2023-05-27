@@ -5,5 +5,14 @@
 .btn-secondary{
     background-color: #324960!important;
     border-color: #324960!important;
+}
+.divReportesMenu{
+    margin-top: 1.5rem;
+    padding-right: 7rem;
+    margin-left: 1rem;
+    cursor: pointer;
 
+}
+.container{
+    margin-top: 2rem;
 }

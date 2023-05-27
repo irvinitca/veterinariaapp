@@ -65,7 +65,7 @@
                 </div>
                 <div class="setfooter">
                   <button id="back" type="button">Cancelar</button>
-                  <button id="next" type="submit" class="btn btn-primary">Guardar</button>
+                  <button id="next" type="submit" class="btn btn-secondary">Guardar</button>
                 </div>
             </form>
             </div>
