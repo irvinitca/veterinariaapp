@@ -30,7 +30,7 @@
                 <th>Email</th>
                 <th>Tipo de Usuario</th>
                 <th>Fecha de Creación</th>
-                <th>Acciones</th>
+                <th>Editar-Eliminar</th>
             </tr>
         </thead>
         <tbody>
