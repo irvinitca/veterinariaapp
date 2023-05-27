@@ -109,7 +109,7 @@ class UserController extends Controller
 
     // Asigna el rol al nuevo usuario
     $role = Role::findOrFail($request->input('role_id'));
-    $user->assignRole($role);
+    $user->syncRoles([$role->id]);
 
     return redirect()->route('admin.dashboard')->with('success', 'Usuario actualizado exitosamente.');
     }
