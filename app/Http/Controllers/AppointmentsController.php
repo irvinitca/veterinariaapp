@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Pet;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,16 +25,20 @@ class AppointmentsController extends Controller
          else {
             return view('dashboard');
         }
-       
+
     }
     public function create()
     {
         $pets = Pet::all();
-        $users = User::all();
-     
+        $users = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'Veterinario');
+            }
+        )->get();
+
         return view('recepcion.creacion-citas', compact('pets', 'users'));
     }
-    
+
     public function store(Request $request)
     {
         // Validación de los datos enviados en el formulario
@@ -46,7 +51,7 @@ class AppointmentsController extends Controller
             'reason' => 'required',
             'type' => 'required',
         ]);
-    
+
         // Crear una nueva cita con los datos validados
         $appointment = new Appointment();
         $appointment->pet_id = $request->input('pet_id');
@@ -56,9 +61,9 @@ class AppointmentsController extends Controller
         $appointment->reason = $request->input('reason');
         $appointment->type = $request->input('type');
         $appointment->save();
-    
+
         // Redireccionar a la vista de lista de citas con un mensaje de éxito
         return redirect()->route('citas')->with('success', 'La cita ha sido creada exitosamente.');
     }
-    
+
 }
