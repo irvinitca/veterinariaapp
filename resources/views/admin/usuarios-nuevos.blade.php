@@ -22,7 +22,7 @@
             </header>
 
             <div class="formdiv">
-                <form action="{{ route('users.store') }}" method="POST">
+                <form action="{{ route('users.store') }}" method="POST" onsubmit="return confirmarGuardar(event)">
                     @csrf
 
                     <div class="form-group">
@@ -90,11 +90,19 @@
 
                     <div class="setfooter">
                         <button id="back" type="button">Cancelar</button>
-                        <button id="next" type="submit" class="btn">Guardar</button>
+                        <button id="next" type="submit"  class="btn">Guardar</button>
                     </div>
                 </form>
             </div>
-
+            <script>
+                function confirmarGuardar(event) {
+                    if (!confirm('¿Estás seguro de que deseas crear este usuario?')) {
+                        event.preventDefault(); // Evita el envío del formulario si se cancela la confirmación
+                        return false;
+                    }
+                    return true; // Permite el envío del formulario si se confirma la confirmación
+                }
+            </script>
             <script>
                 document.getElementById("back").addEventListener("click", function() {
                     window.location.href = "/dashboard";
@@ -121,3 +129,27 @@
     });
 </script>
 </x-app-layout>
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+    </script>
+@endsection

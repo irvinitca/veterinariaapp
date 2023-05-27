@@ -26,7 +26,7 @@
             </header>
 
             <div class="formdiv">
-                <form action="/users/{{ $user->id }}" method="POST">
+                <form action="/users/{{ $user->id }}" method="POST" onsubmit="return confirmarGuardar(event)">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -98,7 +98,15 @@
                     </div>
                 </form>
             </div>
-
+            <script>
+                function confirmarGuardar(event) {
+                    if (!confirm('¿Estás seguro de que deseas guardar este usuario?')) {
+                        event.preventDefault(); // Evita el envío del formulario si se cancela la confirmación
+                        return false;
+                    }
+                    return true; // Permite el envío del formulario si se confirma la confirmación
+                }
+            </script>
             <script>
                 document.getElementById("back").addEventListener("click", function() {
                     window.location.href = "/dashboard";
