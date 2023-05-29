@@ -22,7 +22,7 @@
                             </x-slot>
                             <x-slot name="content">
                                 <div class="w-60">
-                                    <x-dropdown-link target="_blank" href="{{ route('admin.generate-pdf-pat') }}" >
+                                    <x-dropdown-link target="_blank" href="{{ route('admin.pdf-pacientes') }}" >
                                         {{ __('Reporte Paciente Por Veterinarios') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
@@ -53,6 +53,21 @@
                             <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
                                 {{ __('Mascotas') }}
                             </x-nav-link>
+
+                            <x-dropdown  width="80">
+                                <x-slot name="trigger">
+                                <div class="divReportesMenu"> <span>{{ __('Reporte') }}</span></div>
+    
+    
+                                </x-slot>
+                                <x-slot name="content">
+                                    <div class="w-60">
+                                        <x-dropdown-link target="_blank" href="{{ route('admin.pdf-pacientes') }}" >
+                                            {{ __('Reporte Paciente Por Veterinarios') }}
+                                        </x-dropdown-link>
+                                    </div>
+                                </x-slot>
+                            </x-dropdown>
                         @endif
                     @endauth
                 </div>

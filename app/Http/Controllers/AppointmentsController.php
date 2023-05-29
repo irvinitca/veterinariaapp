@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AppointmentsController extends Controller
 {
@@ -60,6 +61,30 @@ class AppointmentsController extends Controller
         $appointment->date_start = $request->input('date_start');
         $appointment->reason = $request->input('reason');
         $appointment->type = $request->input('type');
+
+        $dateStart = Carbon::parse($request->input('date_start'));
+        $dateEnd = $dateStart->addMinutes(30);
+        $appointment->date_end = $dateEnd;
+        if ($request->has('user_id')) {
+// Validar que no exista un appointment dentro del rango date_start y date_end para el usuario
+$existingAppointment = Appointment::where('user_id', $appointment->user_id)
+    ->where(function ($query) use ($dateStart, $dateEnd) {
+        $query->whereBetween('date_start', [$dateStart, $dateEnd])
+            ->orWhereBetween('date_end', [$dateStart, $dateEnd])
+            ->orWhere(function ($query) use ($dateStart, $dateEnd) {
+                $query->where('date_start', '<=', $dateStart)
+                    ->where('date_end', '>=', $dateEnd);
+            });
+    })
+    ->first();
+
+if ($existingAppointment) {
+    // Existe un appointment dentro del rango date_start y date_end para el usuario
+    // Puedes manejar el caso de error como desees, por ejemplo, lanzando una excepción o mostrando un mensaje de error al usuario.
+    return back()->with('error', 'Ya existe una cita dentro del rango de fechas especificado para este usuario.');
+
+}
+        }
         $appointment->save();
 
         // Redireccionar a la vista de lista de citas con un mensaje de éxito

@@ -63,6 +63,11 @@
 	 filter: sepia(100%);
 	 width: 70%;
 }
+.reportepng{
+	filter: none!important;
+    width: 45%!important;
+    margin-left: 37%!important;
+}
  .right-container {
 	 background: #4FC3A1;
 	 display: grid;
@@ -84,10 +89,10 @@
 	 align-items: center;
 	 display: inline-block;
 	 padding: 5px 40px;
+	 margin-bottom: 10px;
 }
 .select2-container{
-	width: 100% !important;
-	max-width: 46rem;
+	max-width: 60rem;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
 	margin-top: 2px;
@@ -109,6 +114,7 @@
 	 background: #fff;
 	 transition: 0.2s all ease-in-out;
 }
+
  .right-container .setfooter #back:hover {
 	 background: #171a2b;
 	 color: white;

@@ -52,8 +52,12 @@ Route::middleware([
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');
     Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
-    Route::get('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
+    
     Route::get('/admin/generate-pdf-users', [PDFController::class, 'generatePDFUsers'])->name('admin.generate-pdf-users');
+    //REPORTES
+    Route::get('/admin/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->name('admin.pdf-pacientes');
+    Route::post('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
+
     Route::get('/appointments.update', [AppointmentsController::class, 'update'])->name('citas.editar');
 });
 

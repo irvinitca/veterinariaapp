@@ -13,51 +13,34 @@
             VeterinariaCIO
           </h1>
           <div class="puppy">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png"/>
+            <img  class="reportepng" src="/img/reportes.png"/>
           </div>
         </div>
         <div class="right-container">
           <header>
-            <h1>Creacion De Cita </h1>
+            <h1>Creacion De Reportes de Pacientes por Doctor </h1>
             </header>
             <div class="formdiv">
-              <form action="{{ route('appointments.store') }}" method="POST">
+              <form action="{{ route('admin.generate-pdf-pat') }}" method="POST">
                 @csrf
 
-                <div class="form-group">
-                    <label  for="pet_id">Mascota(Paciente):</label>
-                    <select name="pet_id" class="form-control select2">
-                        @foreach ($pets as $pet)
-                            <option value="{{ $pet->id }}">{{ $pet->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
 
 
 
 
                 <div class="form-group">
-                    <label for="date_start">Fecha y Hora Consulta:</label>
+                    <label for="date_start">Desde:</label>
                     <input type="datetime-local" name="date_start" id="date_start" class="form-control" required>
                 </div>
 
-
-                <label for="type">Tipo:</label>
-                <select name="type" id="type" class="form-control">
-                    <option value="Consulta">Consulta</option>
-                    <option value="Emergencia">Emergencia</option>
-                </select>
-
                 <div class="form-group">
-                    <label for="reason">Motivo:</label>
-                    <textarea name="reason" id="reason" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
+                    <label for="date_start">Hasta:</label>
+                    <input type="datetime-local" name="date_end" id="date_end" class="form-control" required>
                 </div>
-
-
 
                 <div class="form-group">
                     <label for="user_id">Veterinario:</label>
-                    <select name="user_id" id="user_id" class="form-control select2">
+                    <select name="user_id" id="user_id" class="form-control select2" required>
                         <option value="">Sin asignar</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -69,11 +52,10 @@
                     {{ session('error') }}
                 </div>
             @endif
-            
-                <div class="setfooter">
-                  <button id="back" type="button">Cancelar</button>
-                  <button id="next" type="submit" class="btn btn-secondary">Guardar</button>
-                </div>
+            <div class="setfooter">
+                <button id="back" type="button">Cancelar</button>
+                <button id="next" type="submit" class="btn btn-secondary">Generar</button>
+              </div>
             </form>
             </div>
             <script>
@@ -101,7 +83,7 @@
 
 <script>
     $(document).ready(function () {
-        $('.select2').select2({  width: '100%' });
+        $('.select2').select2({ width: '100%'});
 
     });
 </script>

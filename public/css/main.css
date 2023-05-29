@@ -11,8 +11,13 @@
     padding-right: 7rem;
     margin-left: 1rem;
     cursor: pointer;
+    color: #9ba2ae;
+    line-height: 1.25rem;
+    font-weight: 500;
+    font-size: .875rem;
 
 }
 .container{
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
+

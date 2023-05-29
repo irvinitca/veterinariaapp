@@ -48,10 +48,10 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
-                        <a href="{{ route('citas.editar', ['id' => $appointment->id]) }}" class="btn btn-primary">
+                        <a href="{{ route('citas.editar', ['id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>
-                        <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary">
+                        <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary iconbtn">
                             <i class="fa-solid fa-xmark"></i>
                         </a>
                     </td>
