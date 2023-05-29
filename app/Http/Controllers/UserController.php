@@ -90,7 +90,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::all();
-        $user->password = '';
+      //  $user->password = '';
 
         return view('admin.usuarios-editar', compact('user', 'roles'));
     }
