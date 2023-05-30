@@ -22,7 +22,7 @@
         <div class="right-container">
 
           <header>
-            <h1>Modificar Usuario</h1>
+            <h1>Editar Usuario</h1>
             </header>
 
             <div class="formdiv">

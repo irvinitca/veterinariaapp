@@ -7,13 +7,12 @@
     <div class="container">
     <div class="signup-container">
         <div class="left-container">
-          <h1>
             <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
-            Veterinaria CIO
-          </h1>
           <div class="puppy">
+            <h1></h1>
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png"/>
-          </div>
+            </h1>
+        </div>
         </div>
         <div class="right-container">
 
@@ -26,7 +25,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="name">Nombre:</label>
+                        <label for="name">Nombre Completo:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-check"></i></span>
@@ -41,7 +40,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
                             </div>
-                            <input name="age" type="number" id="age"  class="form-control" min="18" rows="3" required>
+                            <input name="age" type="number" placeholder="ej.: 20" id="age"  class="form-control" min="18" rows="3" required>
                         </div>
                     </div>
 
@@ -51,7 +50,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-id-card-o"></i></span>
                             </div>
-                            <input name="dui" id="dui" class="form-control" rows="3" required>
+                            <input name="dui" id="dui" placeholder="00000000-0" class="form-control" rows="3" required>
                         </div>
                     </div>
 
@@ -61,7 +60,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-phone"></i></span>
                             </div>
-                            <input name="phone" id="phone" class="form-control" rows="3" required>
+                            <input name="phone" id="phone" placeholder="móvil, oficina o casa" class="form-control" rows="3" required>
                         </div>
                     </div>
 
