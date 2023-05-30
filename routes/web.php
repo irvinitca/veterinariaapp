@@ -70,7 +70,7 @@ Route::middleware([
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
     //Citas
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
-    Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');
+    Route::get('/citas-nuevas/{pet_id?}', [AppointmentsController::class, 'create'])->name('citas.nueva');
     Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
     Route::put('/appointments/{appointmentId}/cancel', [AppointmentsController::class, 'cancel'])->name('appointments.cancel');
     Route::get('/admin/generate-pdf-users', [PDFController::class, 'generatePDFUsers'])->name('admin.generate-pdf-users');
