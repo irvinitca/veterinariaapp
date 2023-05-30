@@ -28,9 +28,9 @@ class AppointmentsController extends Controller
         }
 
     }
-    public function create()
+    public function create($pet_id = null)
     {
-        $pets = Pet::all();
+        $pets = ($pet_id) ? Pet::where('id', $pet_id)->get() : Pet::all();
         $users = User::whereHas(
             'roles', function($q){
                 $q->where('name', 'Veterinario');
