@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use App\Models\Owner;
+
 
 class PetController extends Controller
 {
@@ -21,8 +23,9 @@ class PetController extends Controller
      */
     public function create()
     {
+        $owners = Owner::all();
         $pets = Pet::all();
-    return view('pet.pets-nuevos', compact('pets'));
+    return view('pet.pets-nuevos', compact('pets', 'owners'));
     }
 
     /**
@@ -30,7 +33,28 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                       // Validando los datos del formulario
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'weight' => 'required',
+        'type' => 'required',
+        'breed' => 'required',
+        'age' => 'required',
+        'owner_id' => 'required',
+    ]);
+
+    // Creando el nuevo user con los datos proporcionados
+    $pet = new Pet();
+    $pet->name = $request->input('name');
+    $pet->weight = $request->input('weight');
+    $pet->type = $request->input('type');
+    $pet->breed = $request->input('breed');
+    $pet->age = $request->input('age');
+    $pet->owner_id = $request->input('owner_id');
+    $pet->save();
+
+    return redirect()->route('pet.dashboard')->with('success', 'Nueva mascota creada exitosamente.');
+
     }
 
     /**

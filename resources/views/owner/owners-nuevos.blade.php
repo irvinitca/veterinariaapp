@@ -48,7 +48,7 @@
                         <label for="dui">DUI:</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-id-card-o"></i></span>
+                                <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
                             </div>
                             <input name="dui" id="dui" placeholder="00000000-0" class="form-control" rows="3" required>
                         </div>

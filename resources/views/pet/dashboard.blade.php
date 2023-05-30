@@ -28,10 +28,10 @@
             <tr>
                 <th>Nombre</th>
                 <th>Peso</th>
-                <th>Tipo</th>
+                <th>Tipo de Mascota</th>
                 <th>Raza</th>
                 <th>Edad</th>
-                <th>Dueño</th>
+                <th>Dueño o Encargado</th>
                 <th>Editar-Eliminar</th>
             </tr>
         </thead>
@@ -44,7 +44,6 @@
                     <td>{{ $pet->breed }}</td>
                     <td>{{ $pet->age }}</td>
                     <td>{{ $pet->owner->name }}</td>
-                    <td></td>
                     <td>
                     <form id="form-eliminar-{{ $pet->id }}" action="{{ route('pets.destroy', $pet->id) }}" method="POST">
                         <a href="/pets/{{$pet->id}}/edit" class="btn btn-primary">

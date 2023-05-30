@@ -45,7 +45,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-cat"></i></span>
                             </div>
-                            <input name="type" id="type" placeholder="ej. Canino, Felino, Ave, etc" class="form-control" rows="3" required>
+                            <select name="type" id="type" class="form-control" required>
+                                <option value="" disabled selected>Selecciona el tipo</option>
+                                <option value="Canino">Canino</option>
+                                <option value="Felino">Felino</option>
+                                <option value="Ave">Ave</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,9 +59,25 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-dog"></i></span>
                             </div>
-                            <input name="breed" id="breed" placeholder="ej. Bulldog, Labrador, etc" class="form-control" rows="3" required>
+                            <select name="breed" id="breed" class="form-control" required>
+                                <option value="" disabled selected>Selecciona la raza</option>
+                                <optgroup label="Canino">
+                                    <option value="Bulldog">Bulldog</option>
+                                    <option value="Pastor Alemán">Pastor Alemán</option>
+                                    <option value="Pitbull">Pitbull</option>
+                                </optgroup>
+                                <optgroup label="Felino">
+                                    <option value="Gato Siamés">Gato Siamés</option>
+                                    <option value="Gato Angora">Gato Angora</option>
+                                </optgroup>
+                                <optgroup label="Ave">
+                                    <option value="Canario">Canario</option>
+                                    <option value="Perico">Perico</option>
+                                </optgroup>
+                            </select>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="age">Edad</label>
                         <div class="input-group">
@@ -70,10 +91,11 @@
                         <label for="owner_id">Dueño o Encargado:</label>
                         <select name="owner_id" id="owner_id" class="form-control select2">
                             <option value="" disabled selected>Seleccione</option>
-                            @foreach ($pets as $pet)
-                                <option value="">{{ $pet->owner->name }}</option>
+                            @foreach ($owners as $owner)
+                                <option value="{{ $owner->id }}">{{ $owner->name }}</option>
                             @endforeach
                         </select>
+
                     </div>
                     <div class="setfooter">
                         <button id="back" type="button">Cancelar</button>
