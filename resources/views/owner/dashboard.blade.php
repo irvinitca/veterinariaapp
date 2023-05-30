@@ -14,7 +14,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <h2>Registro de Clientes</h2>
+            <h2>Clientes</h2>
         </div>
         <div class="col-md-3">
             <a href="{{ route('owner.dashboard') }}" class="button-33">Crear Nuevo Cliente</a>

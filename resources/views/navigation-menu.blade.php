@@ -41,7 +41,7 @@
                     @endauth
                     @auth
                         @if (auth()->user()->hasRole('Recepcion'))
-                            <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('citas')">
                                 {{ __('Citas') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
