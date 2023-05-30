@@ -50,7 +50,7 @@
                             <x-nav-link href="{{ route('owner.dashboard') }}"  :active="request()->routeIs('owner.dashboard')">
                                 {{ __('Clientes') }}
                             </x-nav-link>
-                            <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                            <x-nav-link href="{{ route('pet.dashboard') }}"  :active="request()->routeIs('pet.dashboard')">
                                 {{ __('Mascotas') }}
                             </x-nav-link>
 

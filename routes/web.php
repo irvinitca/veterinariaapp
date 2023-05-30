@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Appointment;
 use App\Models\User;
 use App\Models\Owner;
+use App\Models\Pet;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\PetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,13 @@ Route::middleware([
     Route::get('/owners/{id}/edit', [OwnerController::class, 'edit'])->name('owners.edit');
     Route::put('/owners/{id}/', [OwnerController::class, 'update'])->name('owners.update');
     Route::delete('/owners/{id}', [OwnerController::class, 'destroy'])->name('owners.destroy');
+    //Pets
+    Route::get('/pet/dashboard', [PetController::class, 'index'])->name('pet.dashboard');
+    Route::get('/pet/pets-nuevos', [PetController::class, 'create'])->name('pet.pets-nuevos');
+    Route::post('/pets.store', [PetController::class, 'store'])->name('pets.store');
+    Route::get('/pets/{id}/edit', [PetController::class, 'edit'])->name('pets.edit');
+    Route::put('/pets/{id}/', [PetController::class, 'update'])->name('pets.update');
+    Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
 
     //Vets
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
