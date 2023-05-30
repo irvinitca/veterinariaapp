@@ -17,7 +17,7 @@
         <div class="right-container">
 
           <header>
-            <h1>Crear de Nuevo Cliente</h1>
+            <h1>Crear Nuevo Cliente</h1>
             </header>
 
             <div class="formdiv">

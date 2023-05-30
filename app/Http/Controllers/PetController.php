@@ -21,8 +21,8 @@ class PetController extends Controller
      */
     public function create()
     {
-        $pets=Pet::all();
-        return view('pet.pets-nuevos')->with('pets', $pets);
+        $pets = Pet::all();
+    return view('pet.pets-nuevos', compact('pets'));
     }
 
     /**
