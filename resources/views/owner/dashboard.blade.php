@@ -41,7 +41,7 @@
                     <td>{{ $owner->dui }}</td>
                     <td>{{ $owner->phone }}</td>
                     <td>
-                    <form id="form-eliminar-{{ $owner->id }}" action="{{ route('owner.dashboard', $owner->id) }}" method="POST">
+                    <form id="form-eliminar-{{ $owner->id }}" action="{{ route('owners.destroy', $owner->id) }}" method="POST">
                         <a href="/owners/{{$owner->id}}/edit" class="btn btn-primary">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>

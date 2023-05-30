@@ -56,6 +56,7 @@ Route::middleware([
     Route::get('/owners/{id}/edit', [OwnerController::class, 'edit'])->name('owners.edit');
     Route::put('/owners/{id}/', [OwnerController::class, 'update'])->name('owners.update');
     Route::delete('/owners/{id}', [OwnerController::class, 'destroy'])->name('owners.destroy');
+
     //Vets
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
     //Citas

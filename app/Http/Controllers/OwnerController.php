@@ -14,7 +14,7 @@ class OwnerController extends Controller
      */
     public function index()
 {
-    $owners = Owner::orderByDesc('created_at')->paginate(7);
+    $owners = Owner::where('estado', true)->orderByDesc('created_at')->paginate(7);
     return view('owner.dashboard')->with('owners', $owners);
 }
 
@@ -92,6 +92,10 @@ class OwnerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $owner = Owner::find($id);
+        $owner->estado=false;
+        $owner->save();
+
+        return redirect('/owner/dashboard');
     }
 }
