@@ -17,7 +17,7 @@
             <h2>Registro de Usuarios</h2>
         </div>
         <div class="col-md-3">
-            <a href="{{ route('admin.usuarios-nuevos') }}" class="button-33">Crear Nuevo Usuario</a>
+            <a href="{{ route('admin.usuarios-nuevos') }}" class="button-33">Nuevo Usuario</a>
         </div>
     </div>
 

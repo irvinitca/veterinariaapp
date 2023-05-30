@@ -51,6 +51,11 @@ Route::middleware([
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     //Owners
     Route::get('/owner/dashboard', [OwnerController::class, 'index'])->name('owner.dashboard');
+    Route::get('/owner/owners-nuevos', [OwnerController::class, 'create'])->name('owner.owners-nuevos');
+    Route::post('/owners.store', [OwnerController::class, 'store'])->name('owners.store');
+    Route::get('/owners/{id}/edit', [OwnerController::class, 'edit'])->name('owners.edit');
+    Route::put('/owners/{id}/', [OwnerController::class, 'update'])->name('owners.update');
+    Route::delete('/owners/{id}', [OwnerController::class, 'destroy'])->name('owners.destroy');
     //Vets
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
     //Citas

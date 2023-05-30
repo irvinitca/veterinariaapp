@@ -31,7 +31,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input name="name" id="name" class="form-control" rows="3" required value="{{ old('name') }}">
+                            <input name="name" id="name" class="form-control" rows="3" required >
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
-                            <input name="email" id="email" class="form-control" rows="3" required value="{{ old('email') }}">
+                            <input name="email" id="email" class="form-control" rows="3" required>
                         </div>
                     </div>
 
@@ -124,7 +124,7 @@
 
 <script>
     $(document).ready(function () {
-        $('.select2').select2({ width: '100%' });
+        $('.select2').select2();
 
     });
 </script>

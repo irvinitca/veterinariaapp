@@ -24,7 +24,8 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        $owners=Owner::all();
+        return view('owner.owners-nuevos')->with('owners', $owners);
     }
 
     /**
