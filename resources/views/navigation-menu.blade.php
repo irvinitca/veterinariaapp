@@ -47,7 +47,7 @@
                             <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
                                 {{ __('Pagos') }}
                             </x-nav-link>
-                            <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                            <x-nav-link href="{{ route('owner.dashboard') }}"  :active="request()->routeIs('owner.dashboard')">
                                 {{ __('Clientes') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
@@ -57,8 +57,8 @@
                             <x-dropdown  width="80">
                                 <x-slot name="trigger">
                                 <div class="divReportesMenu"> <span>{{ __('Reporte') }}</span></div>
-    
-    
+
+
                                 </x-slot>
                                 <x-slot name="content">
                                     <div class="w-60">

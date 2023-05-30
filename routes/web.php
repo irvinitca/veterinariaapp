@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Appointment;
 use App\Models\User;
+use App\Models\Owner;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OwnerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,20 +42,22 @@ Route::middleware([
             return Redirect::route('dashboard');
         }
     })->name('dashboard');
-
+    //Users
     Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/usuarios-nuevos', [UserController::class, 'create'])->name('admin.usuarios-nuevos');
     Route::post('/users.store', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}/', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-
+    //Owners
+    Route::get('/owner/dashboard', [OwnerController::class, 'index'])->name('owner.dashboard');
+    //Vets
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
-
+    //Citas
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas', [AppointmentsController::class, 'create'])->name('citas.nueva');
     Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
-    
+
     Route::get('/admin/generate-pdf-users', [PDFController::class, 'generatePDFUsers'])->name('admin.generate-pdf-users');
     //REPORTES
     Route::get('/admin/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->name('admin.pdf-pacientes');
