@@ -49,10 +49,10 @@
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
                         <a href="#"  class="btn btn-primary iconbtn">
-                        <i class="fa fa-usd" aria-hidden="true"></i>
+                            <i class="fas fa-dollar-sign"></i>
                         </a>
                         <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary iconbtn">
-                            <i class="fa-solid fa-xmark"></i>
+                            <i class="fas fa-ban"></i>
                         </a>
                     </td>
                 </tr>
