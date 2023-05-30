@@ -40,10 +40,10 @@
                 <tr>
                     <td>{{ $pet->name }}</td>
                     <td>{{ $pet->weight }}  </td>
-                    <td>{{ $pet->dui }}</td>
-                    <td>{{ $pet->breed }}</td>
                     <td>{{ $pet->type }}</td>
+                    <td>{{ $pet->breed }}</td>
                     <td>{{ $pet->age }}</td>
+                    <td>{{ $pet->owner_id }}</td>
                     <td></td>
                     <td>
                     <form id="form-eliminar-{{ $pet->id }}" action="{{ route('pets.destroy', $pet->id) }}" method="POST">
