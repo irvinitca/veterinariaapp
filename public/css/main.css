@@ -2,6 +2,10 @@
     background-color: #4FC3A1!important;
     border-color: #4FC3A1!important;
 }
+.swal2-styled.swal2-confirm{
+    background-color: #4FC3A1!important;
+    border-color: #4FC3A1!important; 
+}
 .btn-secondary{
     background-color: #324960!important;
     border-color: #324960!important;
@@ -20,4 +24,5 @@
 .container{
     margin-top: 1rem;
 }
+
 

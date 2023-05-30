@@ -48,8 +48,8 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
-                        <a href="{{ route('citas.editar', ['id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
-                            <i class="fa-solid fa-file-pen"></i>
+                        <a href="#"  class="btn btn-primary iconbtn">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
                         </a>
                         <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary iconbtn">
                             <i class="fa-solid fa-xmark"></i>
@@ -63,10 +63,45 @@
     {{ $appointments->links() }}
 </div>
 <script>
-    function confirmCancel(id) {
-        if (confirm("¿Estás seguro de que deseas cancelar esta cita?")) {
-            // Aquí puedes agregar la lógica para enviar una solicitud de eliminación al servidor
-        }
+    function confirmCancel(appointmentId) {
+      
+    
+
+Swal.fire({
+  title: '¿Esta seguro de cancelar esta cita?',
+  text: "¡La accion no se podra revertir!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#4FC3A1',
+  cancelButtonColor: '#324960',
+  cancelButtonText:'¡No!',
+  confirmButtonText: '¡Si!'
+}).then((result) => {
+  if (result.isConfirmed) {
+   // Realizar la petición al controlador para cancelar la cita
+   axios.put('/appointments/' + appointmentId + '/cancel')
+  .then((response) => {
+    Swal.fire(
+      '¡Cancelada!',
+      response.data.message,
+      'success'
+    );
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+  })
+  .catch((error) => {
+    Swal.fire(
+      'Error',
+      error.response.data.error,
+      'error'
+    );
+  });
+
+
     }
+})
+    }
+    
 </script>
 </x-app-layout>

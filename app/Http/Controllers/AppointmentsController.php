@@ -18,7 +18,7 @@ class AppointmentsController extends Controller
         if ($user->hasRole('Administrador')) {
             return view('admin.dashboard');
         } elseif ($user->hasRole('Recepcion')) {
-            $appointments = Appointment::orderByDesc('date_start')->paginate(10);
+            $appointments = Appointment::where('status','Activo')->orderByDesc('date_start')->paginate(10);
             return view('recepcion.dashboard', compact('appointments'));
         }elseif ($user->hasRole('Veterinario')) {
             return view('veterinario.dashboard');
@@ -39,6 +39,21 @@ class AppointmentsController extends Controller
 
         return view('recepcion.creacion-citas', compact('pets', 'users'));
     }
+    public function cancel($appointmentId)
+    {
+        $appointment = Appointment::find($appointmentId);
+    
+        if ($appointment) {
+            $appointment->status = 'Cancelado';
+            $appointment->save();
+    
+            return response()->json(['message' => 'La cita ha sido cancelada exitosamente.']);
+        } else {
+            return response()->json(['error' => 'No se encontró la cita especificada.'], 404);
+        }
+    }
+    
+
 
     public function store(Request $request)
     {
