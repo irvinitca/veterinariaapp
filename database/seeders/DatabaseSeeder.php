@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
        OwnersSeeder::class,
        PetsSeeder::class,
        AppointmentsSeeder::class,
-       HistoriesSeeder::class
+       HistoriesSeeder::class,
+       TypesSeeder::class,
+       BreedsSeeder::class
+
 
     ]);
     }
