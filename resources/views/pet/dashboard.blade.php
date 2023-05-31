@@ -39,7 +39,7 @@
             @foreach ($pets as $pet)
                 <tr>
                     <td>{{ $pet->name }}</td>
-                    <td>{{ $pet->weight }} lbs. </td>
+                    <td>{{ $pet->weight }} lbs.</td>
                     <td>{{ $pet->type }}</td>
                     <td>{{ $pet->breed }}</td>
                     <td>{{ $pet->age }} años</td>
