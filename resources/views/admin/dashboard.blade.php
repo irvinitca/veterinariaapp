@@ -46,12 +46,12 @@
                     <td>{{ $user->created_at }}</td>
                     <td>
                     <form id="form-eliminar-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST">
-                        <a href="/users/{{$user->id}}/edit" class="btn btn-primary">
+                        <a href="/users/{{$user->id}}/edit" class="btn btn-primary iconbtn">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-secondary">
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-secondary iconbtn">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </td>
