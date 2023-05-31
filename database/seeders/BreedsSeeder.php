@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Breed;
 use App\Models\Type;
+
 class BreedsSeeder extends Seeder
 {
     /**
@@ -13,34 +14,53 @@ class BreedsSeeder extends Seeder
      */
     public function run()
     {
-        $breeds = [
-            // Ejemplo para las razas de perros
-            [
-                'type' => 'Perro',
-                'name' => 'Labrador Retriever',
+        $animals = [
+            'Caninos' => [
+                'Golden retriever',
+                'Bulldog francés',
+                'Pastor alemán',
+                'Rottweile',
+                'Beagle',
             ],
-            [
-                'type' => 'Perro',
-                'name' => 'Bulldog',
+            'Felinos' => [
+                'Siberiano',
+                'Angora',
+                'Siamés',
+                'Bengalí',
+                'Persa',
             ],
-            // Ejemplo para las razas de gatos
-            [
-                'type' => 'Gato',
-                'name' => 'Persa',
+            'Aves' => [
+                'Loro',
+                'Perico coumn',
+                'Perico Australiano',
+                'Cacatua',
+                'Tucan',
             ],
-            [
-                'type' => 'Gato',
-                'name' => 'Siames',
+            'Roedores' => [
+                'Hamster',
+                'Cobaya',
+                'Conejo',
+                'Rata',
+                'Raton',
             ],
-            // Agrega más razas de animales aquí
+            'Reptiles' => [
+                'Serpiente',
+                'Lagartija',
+                'Tortuga',
+                'Camaleon',
+                'Iguana',
+            ],
         ];
 
-        foreach ($breeds as $breed) {
-            $type = Type::where('name', $breed['type'])->first();
-            if ($type) {
+        foreach ($animals as $type => $breeds) {
+            $animalType = Type::create([
+                'name' => $type,
+            ]);
+
+            foreach ($breeds as $breed) {
                 Breed::create([
-                    'type_id' => $type->id,
-                    'name' => $breed['name'],
+                    'type_id' => $animalType->id,
+                    'name' => $breed,
                 ]);
             }
         }

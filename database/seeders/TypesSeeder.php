@@ -12,15 +12,6 @@ class TypesSeeder extends Seeder
      */
     public function run()
     {
-        $types = [
-            ['name' => 'Perro'],
-            ['name' => 'Gato'],
-            ['name' => 'Ave'],
-            // Agrega más tipos de animales aquí
-        ];
-
-        foreach ($types as $type) {
-            Type::create($type);
-        }
+       //
     }
 }

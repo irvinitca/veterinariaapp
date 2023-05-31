@@ -17,8 +17,6 @@
                         <x-dropdown  width="80">
                             <x-slot name="trigger">
                             <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
-
-
                             </x-slot>
                             <x-slot name="content">
                                 <div class="w-60">
