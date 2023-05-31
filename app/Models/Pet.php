@@ -23,4 +23,15 @@ class Pet extends Model
     {
         return $this->belongsTo(Owner::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
+    public function breed()
+    {
+        return $this->belongsTo(Breed::class);
+    }
+
 }

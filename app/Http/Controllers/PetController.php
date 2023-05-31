@@ -5,6 +5,8 @@ use App\Models\Pet;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Owner;
+use App\Models\Type;
+use App\Models\Breed;
 
 
 class PetController extends Controller
@@ -23,9 +25,11 @@ class PetController extends Controller
      */
     public function create()
     {
+        $types = Type::all();
+        $breeds = Breed::all();
         $owners = Owner::all();
         $pets = Pet::all();
-    return view('pet.pets-nuevos', compact('pets', 'owners'));
+        return view('pet.pets-nuevos', compact('pets', 'owners','types', 'breeds'));
     }
 
     /**

@@ -48,9 +48,9 @@
                             </div>
                             <select name="type" id="type" class="form-control" required>
                                 <option value="" disabled selected>Selecciona el tipo</option>
-                                <option value="Canino">Canino</option>
-                                <option value="Felino">Felino</option>
-                                <option value="Ave">Ave</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -63,22 +63,15 @@
                             </div>
                             <select name="breed" id="breed" class="form-control" required>
                                 <option value="" disabled selected>Selecciona la raza</option>
-                                <optgroup label="Canino" class="breed-group" data-type="Canino">
-                                    <option value="Bulldog">Bulldog</option>
-                                    <option value="Pastor Alemán">Pastor Alemán</option>
-                                    <option value="Pitbull">Pitbull</option>
-                                </optgroup>
-                                <optgroup label="Felino" class="breed-group" data-type="Felino">
-                                    <option value="Gato Siamés">Gato Siamés</option>
-                                    <option value="Gato Angora">Gato Angora</option>
-                                </optgroup>
-                                <optgroup label="Ave" class="breed-group" data-type="Ave">
-                                    <option value="Canario">Canario</option>
-                                    <option value="Perico">Perico</option>
-                                </optgroup>
+
+                                    @foreach ($breeds as $breed)
+                                        <option value="{{ $breed->id }}">{{ $breed->name }}</option>
+                                    @endforeach
+
                             </select>
                         </div>
                     </div>
+
 
 
                     <div class="form-group">
@@ -106,6 +99,7 @@
                     </div>
                 </form>
             </div>
+
 
 
             <script>
