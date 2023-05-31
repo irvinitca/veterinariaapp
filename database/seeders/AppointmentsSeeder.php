@@ -18,7 +18,11 @@ class AppointmentsSeeder extends Seeder
     public function run()
     {
         $pets = Pet::pluck('id'); // Obtener todos los IDs de mascotas existentes
-        $users = User::pluck('id'); // Obtener todos los IDs de usuarios existentes
+        $users =User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'Veterinario');
+            }
+        )->pluck('id'); // Obtener todos los IDs de usuarios existentes
 
         for ($i = 1; $i <= 20; $i++) {
             Appointment::create([
