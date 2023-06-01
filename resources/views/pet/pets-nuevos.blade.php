@@ -36,7 +36,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-weight"></i></span>
                             </div>
-                            <input name="weight" type="number" placeholder="lbs." id="weight"  class="form-control" rows="3" required>
+                            <input name="weight" type="number" placeholder="libras" id="weight"  class="form-control" rows="3" required>
                         </div>
                     </div>
 

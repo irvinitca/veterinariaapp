@@ -14,6 +14,9 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth
                         @if (auth()->user()->hasRole('Administrador'))
+                        <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Usuarios') }}
+                        </x-nav-link>
                         <x-dropdown  width="80">
                             <x-slot name="trigger">
                             <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
