@@ -24,14 +24,14 @@ class Pet extends Model
         return $this->belongsTo(Owner::class);
     }
 
-    public function type()
+    public function petType()
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class, 'type');
     }
 
-    public function breed()
+    public function petBreed()
     {
-        return $this->belongsTo(Breed::class);
+        return $this->belongsTo(Breed::class, 'breed');
     }
 
 }

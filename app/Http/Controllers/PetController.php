@@ -41,20 +41,26 @@ class PetController extends Controller
     $validatedData = $request->validate([
         'name' => 'required',
         'weight' => 'required',
-        'type' => 'required',
-        'breed' => 'required',
+        'selectedType' => 'required',
+        'selectedBreed' => 'required',
         'age' => 'required',
         'owner_id' => 'required',
     ]);
 
-    // Creando el nuevo user con los datos proporcionados
+    // Obtener los valores seleccionados del evento
+    $typeId = $request->input('type');
+    $breedId = $request->input('breed');
+
+    // Crear la instancia de Pet y establecer las relaciones
     $pet = new Pet();
     $pet->name = $request->input('name');
     $pet->weight = $request->input('weight');
-    $pet->type = $request->input('type');
-    $pet->breed = $request->input('breed');
     $pet->age = $request->input('age');
     $pet->owner_id = $request->input('owner_id');
+    $pet->type()->associate($typeId);
+    $pet->breed()->associate($breedId);
+
+    // Guardar la mascota
     $pet->save();
 
     return redirect()->route('pet.dashboard')->with('success', 'Nueva mascota creada exitosamente.');

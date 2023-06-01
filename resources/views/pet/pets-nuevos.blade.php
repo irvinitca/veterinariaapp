@@ -19,7 +19,7 @@
             </header>
 
             <div class="formdiv">
-                <form action="{{ route('pets.store') }}" method="POST" onsubmit="return confirmarGuardar(event)">
+                <form wire:submit.prevent="submit" action="{{ route('pets.store') }}" method="POST" onsubmit="return confirmarGuardar(event)">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nombre:</label>
@@ -40,37 +40,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="type">Tipo:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-cat"></i></span>
-                            </div>
-                            <select name="type" id="type" class="form-control" required>
-                                <option value="" disabled selected>Selecciona el tipo</option>
-                                @foreach ($types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div>
+                        @livewire('select-anidado')
+                        <input type="hidden" name="type" id="type" wire:model="selectedType">
+                        <input type="hidden" name="breed" id="breed" wire:model="selectedBreed">
                     </div>
 
-                    <div class="form-group">
-                        <label for="breed">Raza:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-dog"></i></span>
-                            </div>
-                            <select name="breed" id="breed" class="form-control" required>
-                                <option value="" disabled selected>Selecciona la raza</option>
-
-                                    @foreach ($breeds as $breed)
-                                        <option value="{{ $breed->id }}">{{ $breed->name }}</option>
-                                    @endforeach
-
-                            </select>
-                        </div>
-                    </div>
 
 
 
@@ -100,7 +75,15 @@
                 </form>
             </div>
 
-
+            <script>
+                // Escuchar el evento 'selectsSubmitted' emitido por el componente 'SelectAnidado'
+                Livewire.on('selectsSubmitted', data => {
+                    // Aquí puedes manejar los datos seleccionados
+                    // Por ejemplo, puedes asignar los valores a campos ocultos en el formulario
+                    document.getElementById('type').value = data.type;
+                    document.getElementById('breed').value = data.breed;
+                });
+            </script>
 
             <script>
                 function confirmarGuardar(event) {
