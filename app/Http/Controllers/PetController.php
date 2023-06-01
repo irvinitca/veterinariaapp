@@ -27,7 +27,7 @@ class PetController extends Controller
     {
         $types = Type::all();
         $breeds = Breed::all();
-        $owners = Owner::all();
+        $owners = Owner::where('estado', 1)->get();
         $pets = Pet::all();
         return view('pet.pets-nuevos', compact('pets', 'owners','types', 'breeds'));
     }
@@ -36,8 +36,8 @@ class PetController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-                       // Validando los datos del formulario
+{
+    // Validar los datos del formulario
     $validatedData = $request->validate([
         'name' => 'required',
         'weight' => 'required',
@@ -47,25 +47,21 @@ class PetController extends Controller
         'owner_id' => 'required',
     ]);
 
-    // Obtener los valores seleccionados del evento
-    $typeId = $request->input('type');
-    $breedId = $request->input('breed');
-
-    // Crear la instancia de Pet y establecer las relaciones
+    // Crear la instancia de Pet y establecer los valores
     $pet = new Pet();
     $pet->name = $request->input('name');
     $pet->weight = $request->input('weight');
     $pet->age = $request->input('age');
     $pet->owner_id = $request->input('owner_id');
-    $pet->type()->associate($typeId);
-    $pet->breed()->associate($breedId);
+    $pet->type = $request->input('selectedType');
+    $pet->breed = $request->input('selectedBreed');
 
     // Guardar la mascota
     $pet->save();
 
     return redirect()->route('pet.dashboard')->with('success', 'Nueva mascota creada exitosamente.');
+}
 
-    }
 
     /**
      * Display the specified resource.

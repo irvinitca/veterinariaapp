@@ -15,6 +15,7 @@ class SelectAnidado extends Component
 
     public function render()
     {
+        //dd($this->selectedType, $this->selectedBreed);
         return view('livewire.select-anidado', [
             'types' => Type::all()
         ]);

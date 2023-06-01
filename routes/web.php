@@ -5,6 +5,7 @@ use App\Models\Appointment;
 use App\Models\User;
 use App\Models\Owner;
 use App\Models\Pet;
+use App\Http\Livewire\SelectAnidado;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
@@ -65,6 +66,7 @@ Route::middleware([
     Route::get('/pets/{id}/edit', [PetController::class, 'edit'])->name('pets.edit');
     Route::put('/pets/{id}/', [PetController::class, 'update'])->name('pets.update');
     Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
+    Route::get('/select-anidado', SelectAnidado::class);
 
     //Vets
     Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');

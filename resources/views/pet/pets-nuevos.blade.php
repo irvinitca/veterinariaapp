@@ -27,7 +27,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-paw"></i></span>
                             </div>
-                            <input name="name" id="name" class="form-control" rows="3" required>
+                            <input name="name" id="name" autocomplete="off" class="form-control" rows="3" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -41,9 +41,7 @@
                     </div>
 
                     <div>
-                        @livewire('select-anidado')
-                        <input type="hidden" name="type" id="type" wire:model="selectedType">
-                        <input type="hidden" name="breed" id="breed" wire:model="selectedBreed">
+                    @livewire('select-anidado')
                     </div>
 
 
