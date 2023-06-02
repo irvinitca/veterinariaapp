@@ -16,7 +16,9 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::where('estado', true)->orderByDesc('created_at')->paginate(7);
+        $pets = Pet::where('estado', true)
+        ->orderByDesc('created_at')
+        ->paginate(7);
     return view('pet.dashboard')->with('pets', $pets);
     }
 
@@ -95,7 +97,7 @@ class PetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $pet = Pet::find($id);
         $pet->estado=false;
