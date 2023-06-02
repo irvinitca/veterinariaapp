@@ -37,6 +37,7 @@ class PetController extends Controller
      */
     public function store(Request $request)
 {
+    //dd($request->all());
     // Validar los datos del formulario
     $validatedData = $request->validate([
         'name' => 'required',
@@ -47,14 +48,18 @@ class PetController extends Controller
         'owner_id' => 'required',
     ]);
 
+    // Obtener los nombres de tipo y raza seleccionados
+    $selectedType = Type::find($request->input('selectedType'))->name;
+    $selectedBreed = Breed::find($request->input('selectedBreed'))->name;
+
     // Crear la instancia de Pet y establecer los valores
     $pet = new Pet();
     $pet->name = $request->input('name');
     $pet->weight = $request->input('weight');
     $pet->age = $request->input('age');
     $pet->owner_id = $request->input('owner_id');
-    $pet->type = $request->input('selectedType');
-    $pet->breed = $request->input('selectedBreed');
+    $pet->type = $selectedType;
+    $pet->breed = $selectedBreed;
 
     // Guardar la mascota
     $pet->save();

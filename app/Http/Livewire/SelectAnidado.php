@@ -28,7 +28,8 @@ class SelectAnidado extends Component
 
     public function submit()
     {
-        // Validar que los campos select estén seleccionados
+        Livewire.log();
+        // Valida que los campos select estén seleccionados
         $this->validate([
             'selectedType' => 'required',
             'selectedBreed' => 'required',
@@ -40,7 +41,7 @@ class SelectAnidado extends Component
             'breed' => $this->selectedBreed,
         ]);
 
-        \Livewire\Livewire::dispatchBrowserEvent('submitForm');
+        Livewire::dispatchBrowserEvent('submitForm');
     }
 }
 

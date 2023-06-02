@@ -39,6 +39,7 @@
                             <input name="weight" type="number" placeholder="libras" id="weight"  class="form-control" rows="3" required>
                         </div>
                     </div>
+
                     <!--Componentes selects Livewire -->
                     <div>
                     @livewire('select-anidado')
@@ -79,6 +80,7 @@
                     document.getElementById('selectedBreed').value = data.breed;
                 });
                 Livewire.on('submitForm', () => {
+                    //console.log('Form submitted');
                     // Submit el formulario
                     document.getElementById('form-pets-nuevos').submit();
                 });
