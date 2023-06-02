@@ -81,17 +81,38 @@ class PetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $pet = Pet::find($id);
+        $types = Type::all();
+        $breeds = Breed::all();
+        $owners = Owner::all();
+        return view('pet.pets-editar', compact('pet', 'types', 'breeds', 'owners'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+
+
+    $selectedType = Type::find($request->input('selectedType'))->name;
+    $selectedBreed = Breed::find($request->input('selectedBreed'))->name;
+
+    // Crear la instancia de Pet y establecer los valores
+    $pet = Pet::find($id);
+    $pet->name = $request->input('name');
+    $pet->weight = $request->input('weight');
+    $pet->age = $request->input('age');
+    $pet->owner_id = $request->input('owner_id');
+    $pet->type = $selectedType;
+    $pet->breed = $selectedBreed;
+
+    // Guardar la mascota
+    $pet->save();
+
+    return redirect()->route('pet.dashboard')->with('success', 'Mascota actualizada exitosamente.');
     }
 
     /**

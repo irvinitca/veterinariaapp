@@ -100,7 +100,7 @@
             </div>
             <script>
                 function confirmarGuardar(event) {
-                    if (!confirm('¿Estás seguro de que deseas guardar este usuario?')) {
+                    if (!confirm('¿Estás seguro de que deseas editar este usuario?')) {
                         event.preventDefault(); // Evita el envío del formulario si se cancela la confirmación
                         return false;
                     }
