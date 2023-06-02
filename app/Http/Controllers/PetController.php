@@ -16,7 +16,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::orderByDesc('created_at')->paginate(7);
+        $pets = Pet::where('estado', true)->orderByDesc('created_at')->paginate(7);
     return view('pet.dashboard')->with('pets', $pets);
     }
 
@@ -92,6 +92,10 @@ class PetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pet = Pet::find($id);
+        $pet->estado=false;
+        $pet->save();
+
+        return redirect('/pet/dashboard');
     }
 }
