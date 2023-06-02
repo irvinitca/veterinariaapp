@@ -39,13 +39,10 @@
                             <input name="weight" type="number" placeholder="libras" id="weight"  class="form-control" rows="3" required>
                         </div>
                     </div>
-
+                    <!--Componentes selects Livewire -->
                     <div>
                     @livewire('select-anidado')
                     </div>
-
-
-
 
                     <div class="form-group">
                         <label for="age">Edad</label>
@@ -78,8 +75,12 @@
                 Livewire.on('selectsSubmitted', data => {
                     // Aquí puedes manejar los datos seleccionados
                     // Por ejemplo, puedes asignar los valores a campos ocultos en el formulario
-                    document.getElementById('type').value = data.type;
-                    document.getElementById('breed').value = data.breed;
+                    document.getElementById('selectedType').value = data.type;
+                    document.getElementById('selectedBreed').value = data.breed;
+                });
+                Livewire.on('submitForm', () => {
+                    // Submit el formulario
+                    document.getElementById('form-pets-nuevos').submit();
                 });
             </script>
 

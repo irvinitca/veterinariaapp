@@ -39,6 +39,8 @@ class SelectAnidado extends Component
             'type' => $this->selectedType,
             'breed' => $this->selectedBreed,
         ]);
+
+        \Livewire\Livewire::dispatchBrowserEvent('submitForm');
     }
 }
 
