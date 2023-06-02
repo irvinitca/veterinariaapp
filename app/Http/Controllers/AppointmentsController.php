@@ -30,7 +30,12 @@ class AppointmentsController extends Controller
     }
     public function create($pet_id = null)
     {
-        $pets = ($pet_id) ? Pet::where('id', $pet_id)->get() : Pet::all();
+        $pets = ($pet_id)
+        ? Pet::where('id', $pet_id)
+            ->where('estado', 1)
+            ->get()
+        : Pet::where('estado', 1)
+            ->get();
         $users = User::whereHas(
             'roles', function($q){
                 $q->where('name', 'Veterinario');
@@ -42,17 +47,17 @@ class AppointmentsController extends Controller
     public function cancel($appointmentId)
     {
         $appointment = Appointment::find($appointmentId);
-    
+
         if ($appointment) {
             $appointment->status = 'Cancelado';
             $appointment->save();
-    
+
             return response()->json(['message' => 'La cita ha sido cancelada exitosamente.']);
         } else {
             return response()->json(['error' => 'No se encontró la cita especificada.'], 404);
         }
     }
-    
+
 
 
     public function store(Request $request)
