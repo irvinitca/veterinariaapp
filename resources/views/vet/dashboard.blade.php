@@ -33,6 +33,8 @@
                 <th>Tipo Consulta</th>
                 <th>Motivo</th>
                 <th>Veterinario</th>
+                <th>DIAGNOSTICO</th>
+                <th>FINALIZAR</th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +47,14 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
-                    
+                        <a href="#"  class="btn btn-primary iconbtn">
+                            <i class="fa-sharp fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-secondary iconbtn">
+                            <i class="fa-regular fa-calendar-check"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
