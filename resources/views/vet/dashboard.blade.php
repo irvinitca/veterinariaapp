@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <x-app-layout>
     <head>
         <!-- Otras etiquetas y metadatos -->
@@ -20,22 +23,34 @@
     </div>
 
 </div>
-    <div class="table-wrapper">
-        <table class="fl-table">
+<div class="table-wrapper">
+    <table class="fl-table">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Fecha de inicio</th>
+                <th>Hora de inicio</th>
+                <th>Mascota</th>
+                <th>Tipo Consulta</th>
+                <th>Motivo</th>
+                <th>Veterinario</th>
             </tr>
         </thead>
         <tbody>
-
+            @foreach ($appointments as $appointment)
                 <tr>
-                    <td></td>
+                    <td>{{ Carbon::parse($appointment->date_start)->format('Y-m-d') }}</td>
+                    <td>{{ Carbon::parse($appointment->date_start)->format('H:i') }}</td>
+                    <td>{{ $appointment->pet->name }}</td>
+                    <td>{{ $appointment->type }}</td>
+                    <td>{{ $appointment->reason }}</td>
+                    <td>{{ $appointment->user?->name }}</td>
+                    <td>
+                    
+                    </td>
                 </tr>
-
+            @endforeach
         </tbody>
     </table>
 </div>
+
 </x-app-layout>

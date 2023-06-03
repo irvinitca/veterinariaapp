@@ -15,13 +15,18 @@ class AppointmentsController extends Controller
     public function index()
     {
         $user = Auth::user();
+
         if ($user->hasRole('Administrador')) {
             return view('admin.dashboard');
         } elseif ($user->hasRole('Recepcion')) {
             $appointments = Appointment::where('status','Activo')->orderByDesc('date_start')->paginate(10);
             return view('recepcion.dashboard', compact('appointments'));
         }elseif ($user->hasRole('Veterinario')) {
-            return view('veterinario.dashboard');
+            $appointments = Appointment::where('status', 'Activo')
+                ->where('user_id', $user->id)
+                ->orderByDesc('date_start')
+                ->paginate(10);
+            return view('vet.dashboard', compact('appointments'));
         }
          else {
             return view('dashboard');

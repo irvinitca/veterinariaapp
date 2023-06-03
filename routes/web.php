@@ -69,7 +69,7 @@ Route::middleware([
     Route::get('/select-anidado', SelectAnidado::class);
 
     //Vets
-    Route::get('/vet/dashboard', [UserController::class, 'index'])->name('vet.dashboard');
+    Route::get('/vet/dashboard', [AppointmentsController::class, 'index'])->name('vet.dashboard');
     //Citas
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas/{pet_id?}', [AppointmentsController::class, 'create'])->name('citas.nueva');
