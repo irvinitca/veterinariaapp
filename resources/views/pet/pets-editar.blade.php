@@ -58,7 +58,7 @@
                         <div>
                             <div class="form-group">
                                 <label for="breed">Razas:</label>
-                                <select wire:model="selectedBreed" name="selectedBreed" id="selectedBreed" class="form-control ">
+                                <select wire:model="selectedBreed" name="selectedBreed" id="selectedBreed" class="form-control select2">
                                     <option value="">Selecciona la raza</option>
                                     @foreach ($breeds as $breed)
                                     <option value="{{ $breed->id }}" {{ $pet->breed === $breed->name ? 'selected' : '' }}>{{ $breed->name }}</option>
