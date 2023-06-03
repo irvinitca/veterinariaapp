@@ -24,7 +24,7 @@ class AppointmentsController extends Controller
         }elseif ($user->hasRole('Veterinario')) {
             $appointments = Appointment::where('status', 'Activo')
                 ->where('user_id', $user->id)
-                ->orderByDesc('date_start')
+                ->orderBy('date_start')
                 ->paginate(10);
             return view('vet.dashboard', compact('appointments'));
         }
