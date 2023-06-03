@@ -71,6 +71,13 @@
                             </x-dropdown>
                         @endif
                     @endauth
+                    @auth
+                    @if (auth()->user()->hasRole('Veterinario'))
+                        <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('vet.dashboard')">
+                            {{ __('Pacientes Asignados (Citas)') }}
+                        </x-nav-link>
+                    @endif
+                @endauth
                 </div>
             </div>
 
