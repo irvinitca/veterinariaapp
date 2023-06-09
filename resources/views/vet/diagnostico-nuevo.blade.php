@@ -1,8 +1,12 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <x-app-layout>
     <head>
         <!-- Vincular el archivo CSS -->
         <link href="{{ asset('css/formcita.css') }}" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Otras etiquetas y metadatos -->
     </head>
     <div class="container">
 
@@ -10,15 +14,42 @@
         <div class="left-container">
           <h1>
             <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
-            VeterinariaCIO
+            Veterinaria CIO
           </h1>
-            <!-- Mostrar diagnósticos pasados del paciente -->
+            <!-- aqi mostrando los diagnósticos ya Cerrados del paciente -->
         <div class="left-container">
-            <h1>
-            <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
-            VeterinariaCIO
-            </h1>
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th>CITA</th>
+                        <th>FECHA</th>
+                        <th>DIAGNOSTICO</th>
+                        <th>SERVICIO</th>
+                        <th>MEDICAMENTOS</th>
+                        <th>VER DETALLES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($histories as $history)
+                        <tr>
+                            <td>{{ $history->appointment_id }}</td>
+                            <td>{{ Carbon::parse($history->date_resolved)->format('Y-m-d') }}</td>
+                            <td>{{ $history->diagnostic }}</td>
+                            <td>{{ $history->services }}</td>
+                            <td>{{ $history->indications }}</td>
+                            <td>{{ $history->medicaments }}</td>
+                            <td>
+                                <a href="" class="btn btn-secondary iconbtn">
+                                    <i class="fa-regular fa-calendar-check"></i>
+                                </a>
+                            </td>
+                            <td>
 
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="right-container">

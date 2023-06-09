@@ -52,7 +52,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('vet.hola') }}" class="btn btn-secondary iconbtn">
+                        <a href="" class="btn btn-secondary iconbtn">
                             <i class="fa-regular fa-calendar-check"></i>
                         </a>
                     </td>

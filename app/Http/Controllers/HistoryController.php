@@ -44,15 +44,23 @@ class HistoryController extends Controller
 
 
     public function create(Request $request)
-{
-    return view('vet.diagnostico-nuevo');
-}
+    {
+        // Obtener el ID del usuario autenticado
+         $userId = Auth::id();
+        // Obtener el ID de la cita desde la solicitud
+         $appointmentId = $request->input('appointment_id');
+           // Obtener las citas cerradas del paciente
+         $appointments = Appointment::where('user_id', $userId)
+         ->where('status', 'Cerrado')
+         ->get();
+          // Obtener los diagnósticos asociados a las citas cerradas
+          $histories = History::whereIn('appointment_id', $appointments->pluck('id'))
+         ->get();
 
-    public function mostrar(Request $request){
-
-        return view('vet.hola');
-
+        // Cargar la vista 'vet.diagnostico-nuevo' y pasar los diagnósticos pasados
+        return view('vet.diagnostico-nuevo', compact('histories'));
     }
+
 
 
 }
