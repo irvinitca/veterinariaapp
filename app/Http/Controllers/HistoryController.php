@@ -23,17 +23,16 @@ class HistoryController extends Controller
             $appointments = Appointment::orderByDesc('date_start')->paginate(10);
             return view('recepcion.dashboard', compact('appointments'));
         }elseif ($user->hasRole('Veterinario')) {
-                    // Obtener el ID del paciente desde la solicitud
+                    // Obteniendo el ID del paciente desde la solicitud
         $petId = $request->input('pet_id');
 
-        // Obtener los diagnósticos del paciente
+        //  diagnósticos del paciente
         $histories = History::whereHas('appointment', function ($query) use ($petId) {
             $query->whereHas('pet', function ($query) use ($petId) {
                 $query->where('id', $petId);
             });
         })->get();
 
-        // Cargar la vista diagnosticos-dashboard y pasar los diagnósticos
         return view('vet.diagnostico-nuevo', compact('histories'));
         }
          else {
@@ -45,24 +44,24 @@ class HistoryController extends Controller
 
             public function showForm(Request $request, $appointment_id)
             {
-                // Obtener el ID del paciente autenticado
+                // Obteniendo el ID del paciente autenticado
                 $userId = Auth::id();
                 $appointment = Appointment::findOrFail($appointment_id);
-                // Obtener todas las citas del paciente, independientemente de su estado
+                // Obteniendo todas las citas del paciente, independientemente de su estado
                 $appointments = Appointment::where('user_id', $userId)->get();
-                // Obtener los diagnósticos asociados a las citas del paciente
+                // Obteniendo los diagnósticos asociados a las citas del paciente
                 $histories = History::whereIn('appointment_id', $appointments->pluck('id'))
                     ->whereHas('appointment', function ($query) {
                         $query->where('status', 'Cerrado');
                     })
+                    ->with('appointment.pet') // aqui cargamos la relación con la mascota(paciente)
                     ->get();
-                // Cargar la vista del formulario de diagnóstico y pasar las citas disponibles y los diagnósticos
+                // Cargando la vista del formulario de diagnóstico y pasar las citas disponibles y los diagnósticos
                 return view('vet.diagnostico-nuevo', compact('appointments', 'histories', 'appointment'));
             }
 
         public function create(Request $request)
         {
-            // Validar los datos del formulario de diagnóstico
             $validatedData = $request->validate([
                 'appointment_id' => 'required|exists:appointments,id',
                 'date_resolved' => 'required|date',
@@ -71,7 +70,6 @@ class HistoryController extends Controller
                 'indications' => 'required',
                 'medicaments' => 'required',
             ]);
-            // Crear el diagnóstico con los datos proporcionados
             $history = new History;
             $history->appointment_id = $request->appointment_id;
             $history->date_resolved = $request->date_resolved;
@@ -81,7 +79,6 @@ class HistoryController extends Controller
             $history->medicaments = $request->medicaments;
             $history->save();
 
-            // Redireccionar a la página de éxito o mostrar un mensaje de éxito
             return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
         }
 
