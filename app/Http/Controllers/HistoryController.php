@@ -34,7 +34,7 @@ class HistoryController extends Controller
         })->get();
 
         // Cargar la vista diagnosticos-dashboard y pasar los diagnósticos
-        return view('vet.diagnosticos-dashboard', compact('histories'));
+        return view('vet.diagnostico-nuevo', compact('histories'));
         }
          else {
             return view('dashboard');

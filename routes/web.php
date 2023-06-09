@@ -75,7 +75,7 @@ Route::middleware([
     //Histories
     Route::get('/vet/diagnostico-nuevo', [HistoryController::class, 'create'])->name('vet.diagnostico-nuevo');
     Route::post('/histories', [HistoryController::class, 'create'])->name('histories.create');
-    
+
 
 
 
