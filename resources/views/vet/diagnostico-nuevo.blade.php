@@ -1,0 +1,122 @@
+<x-app-layout>
+    <head>
+        <!-- Vincular el archivo CSS -->
+        <link href="{{ asset('css/formcita.css') }}" rel="stylesheet">
+
+    </head>
+    <div class="container">
+
+    <div class="signup-container">
+        <div class="left-container">
+          <h1>
+            <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
+            VeterinariaCIO
+          </h1>
+            <!-- Mostrar diagnósticos pasados del paciente -->
+        <div class="left-container">
+            <h1>
+            <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
+            VeterinariaCIO
+            </h1>
+
+        </div>
+    </div>
+    <div class="right-container">
+        <header>
+          <h1>Diagnóstico de Paciente</h1>
+        </header>
+        <div class="formdiv">
+          <form action="{{ route('vet.diagnostico-nuevo') }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+              <label for="appointment_id">Cita:</label>
+              <select type="hidden" name="appointment_id" class="form-control select2">
+               {{--   @foreach ($appointments as $appointment)
+                  <option value="{{ $appointment->id }}">{{ $appointment->id }}</option>
+                @endforeach --}}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="date_resolved">Fecha Resuelto:</label>
+              <input type="date" name="date_resolved" id="date_resolved" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="diagnostic">Diagnóstico:</label>
+              <textarea name="diagnostic" id="diagnostic" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="services">Servicios:</label>
+              <textarea name="services" id="services" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="indications">Indicaciones:</label>
+              <textarea name="indications" id="indications" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="medicaments">Medicamentos:</label>
+              <textarea name="medicaments" id="medicaments" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
+            </div>
+
+            <!-- Resto del código del formulario -->
+
+            <div class="setfooter">
+              <button id="back" type="button">Cancelar</button>
+              <button id="next" type="submit" class="btn btn-secondary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    <!-- Resto del código de la vista -->
+  </div>
+
+            <script>
+                document.getElementById("back").addEventListener("click", function() {
+                    window.location.href = "/dashboard";
+                });
+            </script>
+
+
+
+        </div>
+      </div>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({  width: '100%' });
+
+    });
+</script>
+</x-app-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

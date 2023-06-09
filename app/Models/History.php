@@ -14,7 +14,9 @@ class History extends Model
         'appointment_id',
         'date_resolved',
         'diagnostic',
-        'services'
+        'services',
+        'indications',
+        'medicaments',
     ];
 
     public function appointment()

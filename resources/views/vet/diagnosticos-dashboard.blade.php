@@ -17,7 +17,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <h2>Pacientes Asignados a Dr./Dra:   {{ auth()->user()->name }} </h2>
+            <h2>Diagnosticos</h2>
         </div>
 
     </div>
@@ -27,32 +27,33 @@
     <table class="fl-table">
         <thead>
             <tr>
-                <th>Fecha de inicio</th>
-                <th>Hora de inicio</th>
-                <th>Mascota</th>
-                <th>Tipo Consulta</th>
+                <th>#Cita</th>
+                <th>Fecha</th>
+                <th>Diagnostico</th>
+                <th>Servicio</th>
                 <th>Motivo</th>
-                <th>Veterinario</th>
-                <th>DIAGNOSTICO</th>
-                <th>FINALIZAR</th>
+                <th>Indicaciones</th>
+                <th>Medicamento</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($appointments as $appointment)
+            @foreach ($histories as $history)
                 <tr>
-                    <td>{{ Carbon::parse($appointment->date_start)->format('Y-m-d') }}</td>
-                    <td>{{ Carbon::parse($appointment->date_start)->format('H:i') }}</td>
-                    <td>{{ $appointment->pet->name }}</td>
-                    <td>{{ $appointment->type }}</td>
-                    <td>{{ $appointment->reason }}</td>
-                    <td>{{ $appointment->user?->name }}</td>
+                    <td>{{ $history->appointment_id }}</td>
+                    <td>{{ Carbon::parse($history->date_resolved)->format('Y-m-d') }}</td>
+                    <td>{{ Carbon::parse($history->date_resolved)->format('H:i') }}</td>
+                    <td>{{ $history->diagnostic }}</td>
+                    <td>{{ $history->services }}</td>
+                    <td>{{ $history->indications }}</td>
+                    <td>{{ $history->medicaments }}</td>
                     <td>
                         <a href="{{ route('vet.diagnostico-nuevo') }}" class="btn btn-primary iconbtn">
                             <i class="fa-sharp fa-pencil"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('vet.hola') }}" class="btn btn-secondary iconbtn">
+                        <a href="#" class="btn btn-secondary iconbtn">
                             <i class="fa-regular fa-calendar-check"></i>
                         </a>
                     </td>

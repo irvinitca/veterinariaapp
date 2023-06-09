@@ -10,6 +10,7 @@ use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PetController;
 
 /*
@@ -70,6 +71,14 @@ Route::middleware([
 
     //Vets
     Route::get('/vet/dashboard', [AppointmentsController::class, 'index'])->name('vet.dashboard');
+
+    //Histories
+    Route::get('/vet/diagnostico-nuevo', [HistoryController::class, 'create'])->name('vet.diagnostico-nuevo');
+    Route::post('/histories', [HistoryController::class, 'create'])->name('histories.create');
+    
+
+
+
     //Citas
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
     Route::get('/citas-nuevas/{pet_id?}', [AppointmentsController::class, 'create'])->name('citas.nueva');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'pet_id',
         'user_id',
@@ -24,7 +24,7 @@ class Appointment extends Model
             1 => 'Consulta',
             2 => 'Emergencia',
         ];
-    
+
         return $types[$this->type] ?? 'Desconocido';
     }
     public function pet()
@@ -41,4 +41,10 @@ class Appointment extends Model
     {
         return $this->belongsTo(Rate::class);
     }
+    public function history()
+    {
+        return $this->hasOne(History::class);
+    }
+
+
 }
