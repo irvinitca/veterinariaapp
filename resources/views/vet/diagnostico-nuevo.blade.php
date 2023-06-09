@@ -25,10 +25,10 @@
                                 <!-- Encabezado de la tabla -->
                                 <thead>
                                     <tr >
-                                        <th>CITA</th>
+                                        <th>#CITA</th>
+                                        <th>PACIENTE</th>
                                         <th>FECHA</th>
                                         <th>DIAGNOSTICO</th>
-                                        <th>SERVICIO</th>
                                         <th>VER DETALLES</th>
                                     </tr>
                                 </thead>
@@ -37,12 +37,12 @@
                                     @foreach ($histories as $history)
                                         <tr>
                                             <td>{{ $history->appointment_id }}</td>
+                                            <td></td>
                                             <td>{{ Carbon::parse($history->date_resolved)->format('Y-m-d') }}</td>
                                             <td>{{ $history->diagnostic }}</td>
-                                            <td>{{ $history->services }}</td>
                                             <td>
-                                                <a href="" class="btn btn-secondary iconbtn">
-                                                    <i class="fa-regular fa-calendar-check"></i>
+                                                <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
+                                                    <i class="fa-sharp fa-eye"></i>
                                                 </a>
                                             </td>
                                             <td></td>
@@ -60,22 +60,18 @@
                             <h1>Diagnóstico de Paciente</h1>
                         </header>
                         <div class="formdiv">
-                            <form action="{{ route('vet.diagnostico-nuevo') }}" method="POST">
+                            <form action="/vet/dashboard/{{ $appointment->id }}" method="POST">
                                 <!-- Resto del formulario -->
                                 @csrf
-
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="appointment_id">Cita:</label>
-                                    <select type="hidden" name="appointment_id" class="form-control select2">
-                                        {{--   @foreach ($appointments as $appointment)
-                  <option value="{{ $appointment->id }}">{{ $appointment->id }}</option>
-                @endforeach --}}
-                                    </select>
+                                   <input type="text" name="appointment_id" id="appointment_id" class="form-control" value="{{ $appointment->id }}" readonly>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="date_resolved">Fecha Resuelto:</label>
-                                    <input type="date" name="date_resolved" id="date_resolved" class="form-control"
+                                    <input type="date" name="date_resolved" id="date_resolved" value="{{ date('Y-m-d') }}" class="form-control"
                                         required>
                                 </div>
 

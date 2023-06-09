@@ -27,6 +27,7 @@
     <table class="fl-table">
         <thead>
             <tr>
+                <th>#Cita</th>
                 <th>Fecha de inicio</th>
                 <th>Hora de inicio</th>
                 <th>Mascota</th>
@@ -40,6 +41,7 @@
         <tbody>
             @foreach ($appointments as $appointment)
                 <tr>
+                    <td>{{ $appointment->id }}</td>
                     <td>{{ Carbon::parse($appointment->date_start)->format('Y-m-d') }}</td>
                     <td>{{ Carbon::parse($appointment->date_start)->format('H:i') }}</td>
                     <td>{{ $appointment->pet->name }}</td>
@@ -47,9 +49,12 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
-                        <a href="{{ route('vet.diagnostico-nuevo') }}" class="btn btn-primary iconbtn">
-                            <i class="fa-sharp fa-pencil"></i>
-                        </a>
+
+                            <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
+                                <i class="fa-sharp fa-pencil"></i>
+                            </a>
+
+
                     </td>
                     <td>
                         <a href="" class="btn btn-secondary iconbtn">

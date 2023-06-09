@@ -43,24 +43,47 @@ class HistoryController extends Controller
     }
 
 
-    public function create(Request $request)
-    {
-        // Obtener el ID del usuario autenticado
-         $userId = Auth::id();
-        // Obtener el ID de la cita desde la solicitud
-         $appointmentId = $request->input('appointment_id');
-           // Obtener las citas cerradas del paciente
-         $appointments = Appointment::where('user_id', $userId)
-         ->where('status', 'Cerrado')
-         ->get();
-          // Obtener los diagnósticos asociados a las citas cerradas
-          $histories = History::whereIn('appointment_id', $appointments->pluck('id'))
-         ->get();
+            public function showForm(Request $request, $appointment_id)
+            {
+                // Obtener el ID del paciente autenticado
+                $userId = Auth::id();
+                $appointment = Appointment::findOrFail($appointment_id);
+                // Obtener todas las citas del paciente, independientemente de su estado
+                $appointments = Appointment::where('user_id', $userId)->get();
+                // Obtener los diagnósticos asociados a las citas del paciente
+                $histories = History::whereIn('appointment_id', $appointments->pluck('id'))
+                    ->whereHas('appointment', function ($query) {
+                        $query->where('status', 'Cerrado');
+                    })
+                    ->get();
+                // Cargar la vista del formulario de diagnóstico y pasar las citas disponibles y los diagnósticos
+                return view('vet.diagnostico-nuevo', compact('appointments', 'histories', 'appointment'));
+            }
 
-        // Cargar la vista 'vet.diagnostico-nuevo' y pasar los diagnósticos pasados
-        return view('vet.diagnostico-nuevo', compact('histories'));
-    }
+        public function create(Request $request)
+        {
+            // Validar los datos del formulario de diagnóstico
+            $validatedData = $request->validate([
+                'appointment_id' => 'required|exists:appointments,id',
+                'date_resolved' => 'required|date',
+                'diagnostic' => 'required',
+                'services' => 'required',
+                'indications' => 'required',
+                'medicaments' => 'required',
+            ]);
+            // Crear el diagnóstico con los datos proporcionados
+            $history = new History;
+            $history->appointment_id = $request->appointment_id;
+            $history->date_resolved = $request->date_resolved;
+            $history->diagnostic = $request->diagnostic;
+            $history->services = $request->services;
+            $history->indications = $request->indications;
+            $history->medicaments = $request->medicaments;
+            $history->save();
 
+            // Redireccionar a la página de éxito o mostrar un mensaje de éxito
+            return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
+        }
 
 
 }
