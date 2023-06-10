@@ -70,7 +70,10 @@
                         <div class="formdiv">
                             @if ($histories->contains('appointment_id', $appointment->id))
                             <div class="alert alert-danger">Ya existe un diagnóstico para esta cita.</div>
+                            <button id="back" class="btn btn-outline-dark" type="button">Regresar</button>
+                            <br><br>
                          @else
+                         <br>
                             <form action="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" method="POST">
                                 @csrf
                                 @method('POST')
@@ -173,11 +176,23 @@
                                     '<p>' + response.medicaments + '</p>' +
                                     '</div>' +
                                     '</div>' +
-                                    '</div>';
+                                    '</div>' +
+                                    '<button id="printButton" class="btn btn-primary">Imprimir</button>';
                         // Mostrar el modal con el contenido cargado
                         $('#modal-body').html(modalContent);
                         $('#myModal').modal('show');
                     }
+                });
+            });
+                $('#myModal').on('shown.bs.modal', function() {
+                $('#printButton').on('click', function() {
+                    var modalContent = $('#modal-body').html(); // Obtener el contenido del modal
+
+                    var printWindow = window.open('', '_blank'); // Abrir una ventana emergente
+                    printWindow.document.open();
+                    printWindow.document.write('<html><head><title>Detalles del diagnóstico</title></head><body>' + modalContent + '</body></html>'); // Escribir el contenido del modal en la ventana emergente
+                    printWindow.document.close();
+                    printWindow.print(); // Imprimir la ventana emergente
                 });
             });
         });
@@ -207,7 +222,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Detalles del diagnóstico</h4>
+                        <h4 class="modal-title" id="myModalLabel">Detalles del diagnóstico - {{$appointment->pet->name}}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -218,6 +233,5 @@
                 </div>
             </div>
         </div>
-
 
 </x-app-layout>
