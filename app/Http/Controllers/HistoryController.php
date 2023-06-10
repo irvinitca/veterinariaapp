@@ -56,6 +56,7 @@ class HistoryController extends Controller
                     $query->where('pet_id', $appointment->pet_id);
                 })
                 ->with('appointment.pet', 'appointment.user')
+                ->orderByDesc('id')
                 ->get();
 
 
