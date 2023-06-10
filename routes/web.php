@@ -72,10 +72,11 @@ Route::middleware([
     //Vets
     Route::get('/vet/dashboard', [AppointmentsController::class, 'index'])->name('vet.dashboard');
 
-    //Histories
+    //Histories(diagnosticos)
     Route::get('/vet/diagnostico-nuevo', [HistoryController::class, 'showForm'])->name('vet.diagnostico-nuevo');
     Route::post('/vet/diagnostico-nuevo', [HistoryController::class, 'create'])->name('vet.diagnostico-nuevo.create');
     Route::get('/vet/diagnostico-nuevo/{appointment_id}', [HistoryController::class, 'showForm'])->name('vet.diagnostico-nuevo');
+    Route::post('/vet/diagnostico-nuevo', [HistoryController::class, 'store'])->name('vet.diagnostico-nuevo.store');
 
     //Citas
     Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');

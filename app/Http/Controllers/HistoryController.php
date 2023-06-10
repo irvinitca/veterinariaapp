@@ -79,5 +79,28 @@ class HistoryController extends Controller
             return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
         }
 
+                public function store(Request $request)
+        {
+            $validatedData = $request->validate([
+                'appointment_id' => 'required|exists:appointments,id',
+                'date_resolved' => 'required|date',
+                'diagnostic' => 'required',
+                'services' => 'required',
+                'indications' => 'required',
+                'medicaments' => 'required',
+            ]);
+
+            $history = new History;
+            $history->appointment_id = $request->appointment_id;
+            $history->date_resolved = $request->date_resolved;
+            $history->diagnostic = $request->diagnostic;
+            $history->services = $request->services;
+            $history->indications = $request->indications;
+            $history->medicaments = $request->medicaments;
+            $history->save();
+
+            return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
+        }
+
 
 }

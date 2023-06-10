@@ -18,7 +18,7 @@
                             @if ($histories->isNotEmpty())
                             <h1>Historial de diagnósticos de '{{ $histories->first()->appointment->pet->name }}'</h1>
                         @else
-                            <h1>No hay diagnósticos disponibles</h1>
+                            <h1>Paciente -{{$appointment->pet->name}}- sin diagnósticos </h1>
                         @endif
 
                         <div class="table-responsive">
@@ -26,11 +26,13 @@
                                 <thead>
                                     <tr >
                                         <th>#CITA</th>
+                                        <th>DIAGNOSTICO</th>
+                                        <th>FECHA</th>
                                         <th>PACIENTE</th>
                                         <th>VET</th>
-                                        <th>FECHA</th>
-                                        <th>DIAGNOSTICO</th>
-                                        <th>VER DETALLES</th>
+
+
+                                        <th>DETALLES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,10 +40,10 @@
                                       @if ($history->appointment_id == $appointment->id)
                                         <tr>
                                             <td>{{ $history->appointment_id }}</td>
+                                            <td>{{ $history->diagnostic }}</td>
+                                            <td>{{ Carbon::parse($history->date_resolved)->format('d-m-Y') }}</td>
                                             <td>{{ $history->appointment->pet->name }}</td>
                                             <td>{{ $history->appointment->user->name }}</td>
-                                            <td>{{ Carbon::parse($history->date_resolved)->format('Y-m-d') }}</td>
-                                            <td>{{ $history->diagnostic }}</td>
                                             <td>
                                                 <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
                                                     <i class="fa-sharp fa-eye"></i>
@@ -87,7 +89,12 @@
 
                                 <div class="form-group">
                                     <label for="services">Servicios:</label>
-                                    <textarea name="services" id="services" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
+                                    <select name="services" id="services">
+                                        <option value="" disabled selected>Seleccione servicio</option>
+                                        <option value="consulta">Consulta</option>
+                                        <option value="emergencia">Emergencia</option>
+                                        <option value="grooming" disabled>Grooming</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -105,19 +112,19 @@
                                     <button id="next" type="submit" class="btn btn-secondary">Guardar</button>
                                 </div>
                             </form>
-                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            document.getElementById("back").addEventListener("click", function() {
-                window.location.href = "/dashboard";
-            });
-        </script>
     </div>
-    </div>
+
+    <script>
+        document.getElementById("back").addEventListener("click", function() {
+            window.location.href = "/dashboard";
+        });
+    </script>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
