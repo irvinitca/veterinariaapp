@@ -3,12 +3,8 @@
 @endphp
 <x-app-layout>
     <head>
-        <!-- Otras etiquetas y metadatos -->
-
-        <!-- Vincular el archivo CSS -->
         <link href="{{ asset('css/table.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Otras etiquetas y metadatos -->
     </head>
 
 <div class="container">
@@ -49,12 +45,9 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
-
                             <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
                                 <i class="fa-sharp fa-pencil"></i>
                             </a>
-
-
                     </td>
                     <td>
                         <a href="" class="btn btn-secondary iconbtn">

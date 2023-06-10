@@ -23,10 +23,8 @@ class HistoryController extends Controller
             $appointments = Appointment::orderByDesc('date_start')->paginate(10);
             return view('recepcion.dashboard', compact('appointments'));
         }elseif ($user->hasRole('Veterinario')) {
-                    // Obteniendo el ID del paciente desde la solicitud
         $petId = $request->input('pet_id');
-
-        //  diagnósticos del paciente
+        // diagnósticos del paciente
         $histories = History::whereHas('appointment', function ($query) use ($petId) {
             $query->whereHas('pet', function ($query) use ($petId) {
                 $query->where('id', $petId);
@@ -47,14 +45,13 @@ class HistoryController extends Controller
                 // Obteniendo el ID del paciente autenticado
                 $userId = Auth::id();
                 $appointment = Appointment::findOrFail($appointment_id);
-                // Obteniendo todas las citas del paciente, independientemente de su estado
-                $appointments = Appointment::where('user_id', $userId)->get();
-                // Obteniendo los diagnósticos asociados a las citas del paciente
-                $histories = History::whereIn('appointment_id', $appointments->pluck('id'))
-                    ->whereHas('appointment', function ($query) {
-                        $query->where('status', 'Cerrado');
-                    })
-                    ->with('appointment.pet') // aqui cargamos la relación con la mascota(paciente)
+                // todas las citas del paciente, independientemente de su estado
+                $appointments = Appointment::where('user_id', $userId)
+                ->with('pet') // Cargar la relación de mascota junto con las citas
+                ->get();
+                // Diagnósticos asociados a la cita del paciente con el ID correspondiente
+                $histories = History::whereIn('appointment_id', [$appointment_id])
+                    ->with('appointment.pet') // la relación con la mascota(paciente)
                     ->get();
                 // Cargando la vista del formulario de diagnóstico y pasar las citas disponibles y los diagnósticos
                 return view('vet.diagnostico-nuevo', compact('appointments', 'histories', 'appointment'));

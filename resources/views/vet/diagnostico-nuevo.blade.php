@@ -4,11 +4,9 @@
 <x-app-layout>
 
     <head>
-        <!-- Vincular el archivo CSS -->
         <link href="{{ asset('css/formcita.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Otras etiquetas y metadatos -->
     </head>
     <div class="container">
 
@@ -17,27 +15,31 @@
                 <div class="col-md-6">
                     <div class="left-container">
                         <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
+                            @if ($histories->isNotEmpty())
+                            <h1>Historial de diagnósticos de '{{ $histories->first()->appointment->pet->name }}'</h1>
+                        @else
+                            <h1>No hay diagnósticos disponibles</h1>
+                        @endif
 
-                          <h1>Historial de diagnosticos</h1>
-                        <!-- Contenido del contenedor izquierdo (tabla) -->
                         <div class="table-responsive">
                             <table class="table table-striped table-dark">
-                                <!-- Encabezado de la tabla -->
                                 <thead>
                                     <tr >
                                         <th>#CITA</th>
                                         <th>PACIENTE</th>
+                                        <th>VET</th>
                                         <th>FECHA</th>
                                         <th>DIAGNOSTICO</th>
                                         <th>VER DETALLES</th>
                                     </tr>
                                 </thead>
-                                <!-- Cuerpo de la tabla -->
                                 <tbody>
                                     @foreach ($histories as $history)
+                                      @if ($history->appointment_id == $appointment->id)
                                         <tr>
                                             <td>{{ $history->appointment_id }}</td>
-                                            <td></td>
+                                            <td>{{ $history->appointment->pet->name }}</td>
+                                            <td>{{ $history->appointment->user->name }}</td>
                                             <td>{{ Carbon::parse($history->date_resolved)->format('Y-m-d') }}</td>
                                             <td>{{ $history->diagnostic }}</td>
                                             <td>
@@ -47,6 +49,7 @@
                                             </td>
                                             <td></td>
                                         </tr>
+                                      @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -55,13 +58,11 @@
                 </div>
                 <div class="col-md-6">
                     <div class="right-container">
-                        <!-- Contenido del contenedor derecho (formulario) -->
                         <header>
                             <h1>Diagnóstico de Paciente</h1>
                         </header>
                         <div class="formdiv">
                             <form action="/vet/dashboard/{{ $appointment->id }}" method="POST">
-                                <!-- Resto del formulario -->
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
@@ -73,6 +74,10 @@
                                     <label for="date_resolved">Fecha Resuelto:</label>
                                     <input type="date" name="date_resolved" id="date_resolved" value="{{ date('Y-m-d') }}" class="form-control"
                                         required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pet_name">Mascota:</label>
+                                    <input type="text" name="pet_name" id="pet_name" class="form-control" value="{{ $appointment->pet->name }}" readonly>
                                 </div>
 
                                 <div class="form-group">
@@ -95,8 +100,6 @@
                                     <textarea name="medicaments" id="medicaments" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
                                 </div>
 
-                                <!-- Resto del código del formulario -->
-
                                 <div class="setfooter">
                                     <button id="back" type="button">Cancelar</button>
                                     <button id="next" type="submit" class="btn btn-secondary">Guardar</button>
@@ -113,12 +116,8 @@
                 window.location.href = "/dashboard";
             });
         </script>
-
-
-
     </div>
     </div>
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -129,8 +128,6 @@
         </div>
     @endif
     </div>
-
-
     <script>
         $(document).ready(function() {
             $('.select2').select2({
