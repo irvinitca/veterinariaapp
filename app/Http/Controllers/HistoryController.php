@@ -45,14 +45,20 @@ class HistoryController extends Controller
                 // Obteniendo el ID del paciente autenticado
                 $userId = Auth::id();
                 $appointment = Appointment::findOrFail($appointment_id);
+
                 // todas las citas del paciente, independientemente de su estado
                 $appointments = Appointment::where('user_id', $userId)
                 ->with('pet') // Cargar la relación de mascota junto con las citas
                 ->get();
+
                 // Diagnósticos asociados a la cita del paciente con el ID correspondiente
-                $histories = History::whereIn('appointment_id', [$appointment_id])
-                    ->with('appointment.pet') // la relación con la mascota(paciente)
-                    ->get();
+                $histories = History::whereHas('appointment', function ($query) use ($appointment) {
+                    $query->where('pet_id', $appointment->pet_id);
+                })
+                ->with('appointment.pet', 'appointment.user')
+                ->get();
+
+
                 // Cargando la vista del formulario de diagnóstico y pasar las citas disponibles y los diagnósticos
                 return view('vet.diagnostico-nuevo', compact('appointments', 'histories', 'appointment'));
             }

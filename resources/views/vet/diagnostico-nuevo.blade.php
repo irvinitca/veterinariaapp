@@ -30,14 +30,12 @@
                                         <th>FECHA</th>
                                         <th>PACIENTE</th>
                                         <th>VET</th>
-
-
                                         <th>DETALLES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($histories as $history)
-                                      @if ($history->appointment_id == $appointment->id)
+
                                         <tr>
                                             <td>{{ $history->appointment_id }}</td>
                                             <td>{{ $history->diagnostic }}</td>
@@ -45,13 +43,13 @@
                                             <td>{{ $history->appointment->pet->name }}</td>
                                             <td>{{ $history->appointment->user->name }}</td>
                                             <td>
-                                                <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" class="btn btn-primary iconbtn">
+                                                <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $history->appointment->id]) }}" class="btn btn-primary iconbtn">
                                                     <i class="fa-sharp fa-eye"></i>
                                                 </a>
                                             </td>
                                             <td></td>
                                         </tr>
-                                      @endif
+
                                     @endforeach
                                 </tbody>
                             </table>
