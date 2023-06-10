@@ -99,7 +99,8 @@ class HistoryController extends Controller
             $history->medicaments = $request->medicaments;
             $history->save();
 
-            return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
+            return redirect()->route('vet.diagnostico-nuevo', ['appointment_id' => $history->appointment_id])->with('success', 'Diagnóstico creado exitosamente');
+
         }
 
 

@@ -64,9 +64,9 @@
                             <h1>Diagnóstico de Paciente</h1>
                         </header>
                         <div class="formdiv">
-                            <form action="/vet/dashboard/{{ $appointment->id }}" method="POST">
+                            <form action="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                @method('POST')
                                 <div class="form-group">
                                     <label for="appointment_id">Cita:</label>
                                    <input type="text" name="appointment_id" id="appointment_id" class="form-control" value="{{ $appointment->id }}" readonly>
@@ -88,7 +88,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="services">Servicios:</label>
+                                    <label for="services">Servicios:</label><br>
                                     <select name="services" id="services">
                                         <option value="" disabled selected>Seleccione servicio</option>
                                         <option value="consulta">Consulta</option>
