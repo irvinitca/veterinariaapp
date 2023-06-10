@@ -109,5 +109,12 @@ class HistoryController extends Controller
 
         }
 
+             public function showDetails($id)
+        {
+            // Obtener los datos del diagnóstico por el ID
+             $history = History::findOrFail($id);
 
+            // Retornar una respuesta JSON con los datos del diagnóstico
+            return response()->json($history);
+        }
 }

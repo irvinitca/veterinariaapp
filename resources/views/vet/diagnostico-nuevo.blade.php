@@ -4,9 +4,15 @@
 <x-app-layout>
 
     <head>
+                <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
         <link href="{{ asset('css/formcita.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <div class="container">
 
@@ -20,6 +26,7 @@
                         @else
                             <h1>Paciente -{{$appointment->pet->name}}- sin diagnósticos </h1>
                         @endif
+
 
                         <div class="table-responsive">
                             <table class="table table-striped table-dark">
@@ -41,10 +48,11 @@
                                             <td>{{ Carbon::parse($history->date_resolved)->format('d-m-Y') }}</td>
                                             <td>{{ $history->appointment->user->name }}</td>
                                             <td>
-                                                <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $history->appointment->id]) }}" class="btn btn-primary iconbtn">
+                                                <a href="#" class="btn btn-primary iconbtn open-modal" data-appointment-id="{{ $history->appointment->id }}">
                                                     <i class="fa-sharp fa-eye"></i>
                                                 </a>
                                             </td>
+
                                             <td></td>
                                         </tr>
 
@@ -124,6 +132,58 @@
             window.location.href = "/dashboard";
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.open-modal').click(function(e) {
+                e.preventDefault();
+
+                var appointmentId = $(this).data('appointment-id');
+
+                // Realizar una petición AJAX al controlador para obtener los datos del diagnóstico
+                $.ajax({
+                    url: '/vet/diagnostico-nuevo/' + appointmentId + '/details',
+                    method: 'GET',
+                    success: function(response) {
+                        // aqui se crea el contenido del modal con los datos obtenidos
+                        var modalContent = '<h5># Cita: ' + response.id + '</h5>' +
+                                    '<div class="container">' +
+                                    '<div class="row">' +
+                                    '<div class="col-md-6">' +
+                                    '<p><strong>Fecha:</strong></p>' +
+                                    '<p>' + response.date_resolved + '</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                    '<p><strong>Diagnóstico:</strong></p>' +
+                                    '<p>' + response.diagnostic + '</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="row">' +
+                                    '<div class="col-md-6">' +
+                                    '<p><strong>Servicios:</strong></p>' +
+                                    '<p>' + response.services + '</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                    '<p><strong>Indicaciones:</strong></p>' +
+                                    '<p>' + response.indications + '</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="row">' +
+                                    '<div class="col-md-6">' +
+                                    '<p><strong>Medicamentos:</strong></p>' +
+                                    '<p>' + response.medicaments + '</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+                        // Mostrar el modal con el contenido cargado
+                        $('#modal-body').html(modalContent);
+                        $('#myModal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -133,7 +193,7 @@
             </ul>
         </div>
     @endif
-    </div>
+
     <script>
         $(document).ready(function() {
             $('.select2').select2({
@@ -142,4 +202,22 @@
 
         });
     </script>
+                <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Detalles del diagnóstico</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <!-- Contenido del modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 </x-app-layout>
