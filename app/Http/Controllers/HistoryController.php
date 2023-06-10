@@ -51,7 +51,7 @@ class HistoryController extends Controller
                 ->with('pet') // Cargar la relación de mascota junto con las citas
                 ->get();
 
-                // Diagnósticos asociados a la cita del paciente con el ID correspondiente
+                // Diagnósticos(historail) del Paciente elegido, todos los Vets tambien,
                 $histories = History::whereHas('appointment', function ($query) use ($appointment) {
                     $query->where('pet_id', $appointment->pet_id);
                 })

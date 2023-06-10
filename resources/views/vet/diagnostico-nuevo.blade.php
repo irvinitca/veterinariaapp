@@ -62,6 +62,9 @@
                             <h1>Diagnóstico de Paciente</h1>
                         </header>
                         <div class="formdiv">
+                            @if ($histories->contains('appointment_id', $appointment->id))
+                            <div class="alert alert-danger">Ya existe un diagnóstico para esta cita.</div>
+                         @else
                             <form action="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $appointment->id]) }}" method="POST">
                                 @csrf
                                 @method('POST')
@@ -110,7 +113,7 @@
                                     <button id="next" type="submit" class="btn btn-secondary">Guardar</button>
                                 </div>
                             </form>
-
+                            @endif
                         </div>
                     </div>
                 </div>
