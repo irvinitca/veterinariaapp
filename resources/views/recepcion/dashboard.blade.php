@@ -40,8 +40,16 @@
         </thead>
         <tbody>
             @foreach ($appointments as $appointment)
-                <tr>
-                    <td>{{ Carbon::parse($appointment->date_start)->format('Y-m-d') }}</td>
+            @php
+        $currentTime = \Carbon\Carbon::now();
+        $startTime = \Carbon\Carbon::parse($appointment->date_start);
+        $endTime = \Carbon\Carbon::parse($appointment->date_end);
+        $isCurrentTimeInRange = $currentTime->between($startTime, $endTime);
+        $trClass = $isCurrentTimeInRange ? 'highlighted' : '';
+    @endphp
+
+                <tr class="{{ $trClass }}">
+                    <td>{{ Carbon::parse($appointment->date_start)->format('d-m-Y') }}</td>
                     <td>{{ Carbon::parse($appointment->date_start)->format('H:i') }}</td>
                     <td>{{ $appointment->pet->name }}</td>
                     <td>{{ $appointment->type }}</td>
