@@ -123,5 +123,19 @@ if ($existingAppointment) {
         // Redireccionar a la vista de lista de citas con un mensaje de éxito
         return redirect()->route('citas')->with('success', 'La cita ha sido creada exitosamente.');
     }
+        //este metodo cierra la cita el Vet cuando la termina
+        public function updateStatus($id)
+        {
+            $appointment = Appointment::find($id);
+
+            if ($appointment) {
+                $appointment->status = 'Cerrado';
+                $appointment->save();
+
+                return redirect()->route('vet.dashboard')->with('success', 'Se ha "Cerrado" la consulta exitosamente.');
+            }
+
+            return redirect()->route('vet.dashboard')->with('error', 'No se encontró la cita especificada.');
+        }
 
 }

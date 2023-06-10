@@ -50,10 +50,15 @@
                             </a>
                     </td>
                     <td>
-                        <a href="" class="btn btn-secondary iconbtn">
-                            <i class="fa-regular fa-calendar-check"></i>
-                        </a>
+                        <form action="{{ route('vet.updateStatus', $appointment->id) }}" method="POST">
+                            @method('PATCH')
+                            @csrf
+                            <button type="submit" class="btn btn-secondary iconbtn" onclick="return confirm('¿Estás seguro de que deseas finalizar la consulta?')">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </button>
+                        </form>
                     </td>
+
                 </tr>
             @endforeach
         </tbody>

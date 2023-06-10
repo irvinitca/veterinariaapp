@@ -71,6 +71,7 @@ Route::middleware([
 
     //Vets
     Route::get('/vet/dashboard', [AppointmentsController::class, 'index'])->name('vet.dashboard');
+    Route::patch('/vet/update-status/{id}', [AppointmentsController::class, 'updateStatus'])->name('vet.updateStatus');
 
     //Histories(diagnosticos)
     Route::get('/vet/diagnostico-nuevo', [HistoryController::class, 'showForm'])->name('vet.diagnostico-nuevo');
