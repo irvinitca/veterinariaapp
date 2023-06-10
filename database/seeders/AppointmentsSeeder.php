@@ -24,12 +24,15 @@ class AppointmentsSeeder extends Seeder
             }
         )->pluck('id'); // Obtener todos los IDs de usuarios existentes
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 600; $i++) {
+            $dateStart = now()->addDays((rand(0, 8)))->startOfHour()->addMinutes(rand(0, 47) * 30);
+            $dateEnd = $dateStart->copy()->addMinutes(30);
             Appointment::create([
                 'pet_id' => $pets->random(),
                 'user_id' => $users->random(),
                 'status' => ['Activo', 'Cerrado', 'Cancelado'][rand(0, 2)],
-                'date_start' => now()->addDays($i),
+                'date_start' => $dateStart,
+                'date_end'=> $dateEnd,
                 'reason' => 'Motivo ' . $i,
                 'type' => ['Consulta', 'Emergencia'][rand(0, 1)],
             ]);

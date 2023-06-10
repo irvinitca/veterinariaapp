@@ -19,7 +19,11 @@ class AppointmentsController extends Controller
         if ($user->hasRole('Administrador')) {
             return view('admin.dashboard');
         } elseif ($user->hasRole('Recepcion')) {
-            $appointments = Appointment::where('status','Activo')->orderByDesc('date_start')->paginate(10);
+
+            $currentDateTime = Carbon::now();
+            $appointments = Appointment::where('status','Activo')
+            ->where('date_start', '>=', $currentDateTime->startOfHour()->toDateString())
+            ->orderBy('date_start')->paginate(10);
             return view('recepcion.dashboard', compact('appointments'));
         }elseif ($user->hasRole('Veterinario')) {
             $appointments = Appointment::where('status', 'Activo')
