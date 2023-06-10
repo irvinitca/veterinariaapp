@@ -28,7 +28,6 @@
                                         <th>#CITA</th>
                                         <th>DIAGNOSTICO</th>
                                         <th>FECHA</th>
-                                        <th>PACIENTE</th>
                                         <th>VET</th>
                                         <th>DETALLES</th>
                                     </tr>
@@ -40,7 +39,6 @@
                                             <td>{{ $history->appointment_id }}</td>
                                             <td>{{ $history->diagnostic }}</td>
                                             <td>{{ Carbon::parse($history->date_resolved)->format('d-m-Y') }}</td>
-                                            <td>{{ $history->appointment->pet->name }}</td>
                                             <td>{{ $history->appointment->user->name }}</td>
                                             <td>
                                                 <a href="{{ route('vet.diagnostico-nuevo', ['appointment_id' => $history->appointment->id]) }}" class="btn btn-primary iconbtn">
