@@ -70,6 +70,20 @@ class AppointmentsController extends Controller
             return response()->json(['error' => 'No se encontró la cita especificada.'], 404);
         }
     }
+    public function update($appointmentId)
+    {
+        $appointment = Appointment::find($appointmentId);
+
+        if ($appointment) {
+            $appointment->status = 'Cerrado';
+            $appointment->total = 0.00;
+            $appointment->save();
+
+            return response()->json(['message' => 'La cita ha sido pagado exitosamente.']);
+        } else {
+            return response()->json(['error' => 'No se encontró la cita especificada.'], 404);
+        }
+    }
 
 
 
