@@ -18,21 +18,32 @@ class AppointmentsSeeder extends Seeder
     public function run()
     {
         $pets = Pet::pluck('id'); // Obtener todos los IDs de mascotas existentes
-        $users =User::whereHas(
-            'roles', function($q){
+        $users = User::whereHas('roles', function($q) {
                 $q->where('name', 'Veterinario');
-            }
-        )->pluck('id'); // Obtener todos los IDs de usuarios existentes
+            })->pluck('id'); // Obtener todos los IDs de usuarios existentes
 
-        for ($i = 1; $i <= 600; $i++) {
-            $dateStart = now()->addDays((rand(0, 8)))->startOfHour()->addMinutes(rand(0, 47) * 30);
+        for ($i = 1; $i <= 1200; $i++) {
+            $dateStart = now()->addDays(rand(-6, 8))->startOfHour()->addMinutes(rand(0, 47) * 30);
             $dateEnd = $dateStart->copy()->addMinutes(30);
+            
+            $status = ($dateStart > now()) ? 'Activo' : ['Cancelado', 'Cerrado'][rand(0, 1)];
+            
+            // Verificar si existe una cita en el mismo horario con el mismo user_id y pet_id
+            $existingAppointment = Appointment::where('date_start', $dateStart)
+                ->where('user_id', $users->random())
+                ->where('pet_id', $pets->random())
+                ->first();
+
+            if ($existingAppointment) {
+                continue; // Si existe, omitir esta iteración del bucle y generar otra cita
+            }
+
             Appointment::create([
                 'pet_id' => $pets->random(),
                 'user_id' => $users->random(),
-                'status' => ['Activo', 'Cerrado', 'Cancelado'][rand(0, 2)],
+                'status' => $status,
                 'date_start' => $dateStart,
-                'date_end'=> $dateEnd,
+                'date_end' => $dateEnd,
                 'reason' => 'Motivo ' . $i,
                 'type' => ['Consulta', 'Emergencia'][rand(0, 1)],
             ]);

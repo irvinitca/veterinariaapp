@@ -16,7 +16,7 @@ class History extends Model
         'diagnostic',
         'services',
         'indications',
-        'medicaments',
+        'medicaments'
     ];
 
     public function appointment()

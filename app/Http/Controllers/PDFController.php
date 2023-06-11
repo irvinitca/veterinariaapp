@@ -29,7 +29,8 @@ class PDFController extends Controller
         ->where('appointments.date_start', '>=', $date_start)
         ->where('appointments.date_start', '<=', $date_end)
         ->where('appointments.user_id', $user_id)
-        ->where('status', 'Activo')
+        ->whereIn('status', ['Activo', 'Cerrado'])
+        ->orderBy('appointments.date_start')
         ->get();
     
         $data = [

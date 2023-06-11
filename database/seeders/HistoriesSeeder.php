@@ -17,12 +17,18 @@ class HistoriesSeeder extends Seeder
         $appointments = Appointment::all(); // Obtener todas las citas existentes
 
         foreach ($appointments as $appointment) {
-            History::create([
-                'appointment_id' => $appointment->id,
-                'date_resolved' => now()->subDays(1),
-                'services' => 'consulta',
-                'diagnostic' => 'Diagnóstico para la cita ' . $appointment->id
-            ]);
+            if ($appointment->status === 'Cerrado') {
+                History::create([
+                    'appointment_id' => $appointment->id,
+                    'date_resolved' => now()->subDays(1),
+                    'services' => 'consulta',
+                    'diagnostic' => 'Diagnóstico para la cita ' . $appointment->id,
+                ]);
+                $appointment->total = 100;
+                $appointment->save();
+            }
+            
+           
         }
     }
 }
