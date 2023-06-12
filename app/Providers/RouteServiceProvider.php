@@ -2,15 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
+     /**
      * The path to your application's "home" route.
      *
      * Typically, users are redirected here after authentication.
@@ -18,23 +15,29 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/dashboard';
+    protected $namespace = 'App\Http\Controllers';
 
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     */
-    public function boot(): void
+    public function boot()
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
-
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
             Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix('')
+                ->middleware(['web', 'auth', 'role:Administrador']) // Middleware 'role:admin' para rutas de administrador
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
+
+            Route::prefix('')
+                ->middleware(['web', 'auth', 'role:Veterinario']) // Middleware 'role:user' para rutas de usuario
+                ->namespace($this->namespace)
+                ->group(base_path('routes/veterinario.php'));
+            
+                Route::prefix('')
+                ->middleware(['web', 'auth', 'role:Recepcion']) // Middleware 'role:recepcion' para rutas de usuario
+                ->namespace($this->namespace)
+                ->group(base_path('routes/recepcion.php'));
         });
     }
 }

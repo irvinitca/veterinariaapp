@@ -57,6 +57,12 @@ class AppointmentsController extends Controller
 
         return view('recepcion.creacion-citas', compact('pets', 'users'));
     }
+    public function pagos($pet_id = null)
+    {
+    
+    $appointments = Appointment::all();
+    return view('recepcion.pagos',compact('appointments',$appointments));
+    }
     public function cancel($appointmentId)
     {
         $appointment = Appointment::find($appointmentId);
@@ -75,7 +81,7 @@ class AppointmentsController extends Controller
         $appointment = Appointment::find($appointmentId);
 
         if ($appointment) {
-            $appointment->status = 'Cerrado';
+            $appointment->status = 'Pagado';
             $appointment->total = 0.00;
             $appointment->save();
 
@@ -143,10 +149,10 @@ if ($existingAppointment) {
             $appointment = Appointment::find($id);
 
             if ($appointment) {
-                $appointment->status = 'Cerrado';
+                $appointment->status = 'Cancelado';
                 $appointment->save();
 
-                return redirect()->route('vet.dashboard')->with('success', 'Se ha "Cerrado" la consulta exitosamente.');
+                return redirect()->route('vet.dashboard')->with('success', 'Se ha "Cancelado" la consulta exitosamente.');
             }
 
             return redirect()->route('vet.dashboard')->with('error', 'No se encontró la cita especificada.');

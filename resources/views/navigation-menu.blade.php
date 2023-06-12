@@ -63,7 +63,7 @@
                                 </x-slot>
                                 <x-slot name="content">
                                     <div class="w-60">
-                                        <x-dropdown-link target="_blank" href="{{ route('admin.pdf-pacientes') }}" >
+                                        <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-pacientes') }}" >
                                             {{ __('Reporte Paciente Por Veterinarios') }}
                                         </x-dropdown-link>
                                     </div>
