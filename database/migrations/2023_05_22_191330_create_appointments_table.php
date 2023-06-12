@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('status', ['Activo', 'Cerrado', 'Cancelado']);
+            $table->enum('status', ['Activo', 'Pagado', 'Cancelado']);
             $table->dateTime('date_start');
             $table->dateTime('date_end')->nullable();
             $table->string('reason');

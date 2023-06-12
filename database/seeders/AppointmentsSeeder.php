@@ -26,7 +26,7 @@ class AppointmentsSeeder extends Seeder
             $dateStart = now()->addDays(rand(-6, 8))->startOfHour()->addMinutes(rand(0, 47) * 30);
             $dateEnd = $dateStart->copy()->addMinutes(30);
             
-            $status = ($dateStart > now()) ? 'Activo' : ['Cancelado', 'Cerrado'][rand(0, 1)];
+            $status = ($dateStart > now()) ? 'Activo' : ['Cancelado', 'Pagado'][rand(0, 1)];
             
             // Verificar si existe una cita en el mismo horario con el mismo user_id y pet_id
             $existingAppointment = Appointment::where('date_start', $dateStart)
