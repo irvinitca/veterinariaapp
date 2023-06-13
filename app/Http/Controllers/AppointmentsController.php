@@ -41,6 +41,7 @@ class AppointmentsController extends Controller
         }
 
     }
+
     public function create($pet_id = null)
     {
         $pets = ($pet_id)
@@ -60,8 +61,10 @@ class AppointmentsController extends Controller
     public function pagos($pet_id = null)
     {
     
-    $appointments = Appointment::all();
-    return view('recepcion.pagos',compact('appointments',$appointments));
+        $appointments = Appointment::where('status','Pagado')->orderBy('date_start')->paginate(10);
+
+
+        return view('recepcion.pagos', compact('appointments'));
     }
     public function cancel($appointmentId)
     {

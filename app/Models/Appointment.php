@@ -36,6 +36,10 @@ class Appointment extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function cobrador()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function rate()
     {

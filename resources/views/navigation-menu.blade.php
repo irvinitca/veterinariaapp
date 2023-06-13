@@ -42,10 +42,10 @@
                     @endauth
                     @auth
                         @if (auth()->user()->hasRole('Recepcion'))
-                            <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('citas')">
+                            <x-nav-link href="{{ route('citas') }}" :active="request()->routeIs('citas')">
                                 {{ __('Citas') }}
                             </x-nav-link>
-                            <x-nav-link href="{{ route('dashboard') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                            <x-nav-link href="{{ route('pagos') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
                                 {{ __('Pagos') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('owner.dashboard') }}"  :active="request()->routeIs('owner.dashboard')">

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Appointment;
 use App\Models\History;
-
+use App\Models\User;
 class HistoriesSeeder extends Seeder
 {
     /**
@@ -15,9 +15,13 @@ class HistoriesSeeder extends Seeder
     public function run(): void
     {
         $appointments = Appointment::all(); // Obtener todas las citas existentes
-
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Recepcion');
+        })->get();
+        
         foreach ($appointments as $appointment) {
             if ($appointment->status === 'Pagado') {
+                $randomUser = $users->random();
                 History::create([
                     'appointment_id' => $appointment->id,
                     'date_resolved' => now()->subDays(1),
@@ -27,6 +31,8 @@ class HistoriesSeeder extends Seeder
                     'medicaments' => 'Medicamentos para la cita ' . $appointment->id
                 ]);
                 $appointment->total = 100;
+                $appointment->cobrador_id=$randomUser->id;
+                $appointment->date_payed= now()->subDays(1);
                 $appointment->save();
             }
             

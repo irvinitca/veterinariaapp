@@ -10,6 +10,7 @@ use App\Http\Controllers\PetController;
 
 //CITAS
 Route::get('/citas', [AppointmentsController::class, 'index'])->name('citas');
+Route::get('/pagos', [AppointmentsController::class, 'pagos'])->name('pagos');
 Route::get('/citas-nuevas/{pet_id?}', [AppointmentsController::class, 'create'])->name('citas.nueva');
 Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
 Route::put('/appointments/{appointmentId}/cancel', [AppointmentsController::class, 'cancel'])->name('appointments.cancel');

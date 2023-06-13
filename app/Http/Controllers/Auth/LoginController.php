@@ -38,8 +38,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
     protected function authenticated(Request $request, $user)
 {
+
+    if ($user->estado) {
+        Auth::logout();
+        return redirect()->route('login')->withErrors(['account_disabled' => 'Tu cuenta ha sido deshabilitada.']);
+    }
     if ($user->hasRole('admin')) {
         return redirect()->route('admin.dashboard');
     } elseif ($user->hasRole('usuario')) {

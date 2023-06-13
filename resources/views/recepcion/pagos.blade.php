@@ -27,10 +27,11 @@
         <table class="fl-table">
         <thead>
             <tr>
-                <th>Fecha de inicio</th>
-                <th>Cliente</th>
-                <th>Estado Consulta</th>
+                <th>Fecha de cita</th>
+                <th>Mascota</th>
                 <th>Monto</th>
+                <th>Cobrado por</th>
+                <th>Fecha de pago</th>
             </tr>
         </thead>
         <tbody>
@@ -46,12 +47,12 @@
                 <tr class="{{ $trClass }}">
                     <td>{{ Carbon::parse($appointment->date_start)->format('d-m-Y') }}</td>
                     <td>{{ $appointment->pet->name }}</td>
-                    <td>{{ $appointment->status }}</td>
                     <td>{{ $appointment->total }}</td>
                     <td>
-                        <a href="#"  class="btn btn-primary iconbtn" onclick="confirmCancel({{ $appointment->id }})">
-                            <i class="fas fa-dollar-sign"></i>
-                        </a>
+                        {{$appointment->cobrador->name}}
+                     </td>
+                    <td>
+                       {{$appointment->date_payed}}
                     </td>
                 </tr>
             @endforeach
