@@ -30,9 +30,12 @@ class HistoriesSeeder extends Seeder
                     'indications' => 'Indicaciones para la cita ' . $appointment->id,
                     'medicaments' => 'Medicamentos para la cita ' . $appointment->id
                 ]);
+                
+                if ($appointment->status === 'Pagado'){
                 $appointment->total = rand(50, 100);
                 $appointment->cobrador_id=$randomUser->id;
                 $appointment->date_payed= now()->subDays(1);
+                }
                 $appointment->save();
             }
             
