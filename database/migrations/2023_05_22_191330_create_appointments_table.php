@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('cobrador_id')->nullable();
             $table->foreign('cobrador_id')->references('id')->on('users');
-            $table->enum('status', ['Activo', 'Pagado', 'Cancelado']);
+            $table->enum('status', ['Activo','Diagnosticada', 'Pagado', 'Cancelado']);
             $table->dateTime('date_start');
             $table->dateTime('date_end')->nullable();
             $table->dateTime('date_payed')->nullable();

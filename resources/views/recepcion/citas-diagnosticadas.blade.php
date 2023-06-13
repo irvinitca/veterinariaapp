@@ -24,11 +24,7 @@
         </div>
 
     </div>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
 </div>
     <div class="table-wrapper">
         <table class="fl-table">
@@ -40,7 +36,7 @@
                 <th>Tipo Consulta</th>
                 <th>Motivo</th>
                 <th>Veterinario</th>
-                <th>Cancelar</th>
+                <th>Pagar</th>
             </tr>
         </thead>
         <tbody>
@@ -61,8 +57,8 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
-                        <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary iconbtn">
-                            <i class="fas fa-ban"></i>
+                        <a href="{{ route('citas.pago', ['appointmentId' => $appointment->id]) }}" class="btn btn-primary iconbtn">
+                            <i class="fas fa-dollar-sign"></i>
                         </a>
                     </td>
                 </tr>
@@ -72,46 +68,5 @@
 
     {{ $appointments->links() }}
 </div>
-<script>
-    function confirmCancel(appointmentId) {
-      
-    
 
-Swal.fire({
-  title: '¿Esta seguro de cancelar esta cita?',
-  text: "¡La accion no se podra revertir!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#4FC3A1',
-  cancelButtonColor: '#324960',
-  cancelButtonText:'¡No!',
-  confirmButtonText: '¡Si!'
-}).then((result) => {
-  if (result.isConfirmed) {
-   // Realizar la petición al controlador para cancelar la cita
-   axios.put('/appointments/' + appointmentId + '/cancel')
-  .then((response) => {
-    Swal.fire(
-      '¡Cancelada!',
-      response.data.message,
-      'success'
-    );
-    setTimeout(() => {
-      location.reload();
-    }, 2000);
-  })
-  .catch((error) => {
-    Swal.fire(
-      'Error',
-      error.response.data.error,
-      'error'
-    );
-  });
-
-
-    }
-})
-    }
-    
-</script>
 </x-app-layout>

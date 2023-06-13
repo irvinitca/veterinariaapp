@@ -43,10 +43,13 @@
                     @auth
                         @if (auth()->user()->hasRole('Recepcion'))
                             <x-nav-link href="{{ route('citas') }}" :active="request()->routeIs('citas')">
-                                {{ __('Citas') }}
+                                {{ __('Citas Activas') }}
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('citas.diagnosticadas') }}" :active="request()->routeIs('citas.diagnosticadas')">
+                                {{ __('Citas Diagnosticadas') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('pagos') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
-                                {{ __('Pagos') }}
+                                {{ __('Citas Pagadas') }}
                             </x-nav-link>
                             <x-nav-link href="{{ route('owner.dashboard') }}"  :active="request()->routeIs('owner.dashboard')">
                                 {{ __('Clientes') }}
@@ -57,7 +60,7 @@
 
                             <x-dropdown  width="80">
                                 <x-slot name="trigger">
-                                <div class="divReportesMenu"> <span>{{ __('Reporte') }}</span></div>
+                                <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
 
 
                                 </x-slot>

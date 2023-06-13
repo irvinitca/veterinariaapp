@@ -17,11 +17,15 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <h2>Pagos </h2>
+            <h2>Citas Pagadas </h2>
         </div>
         
     </div>
-
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 </div>
     <div class="table-wrapper">
         <table class="fl-table">

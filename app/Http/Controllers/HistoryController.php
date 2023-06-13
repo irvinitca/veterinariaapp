@@ -82,7 +82,9 @@ class HistoryController extends Controller
             $history->indications = $request->indications;
             $history->medicaments = $request->medicaments;
             $history->save();
-
+            $appointment = Appointment::findOrFail($request->appointment_id);
+            $appointment->status = 'Diagnosticado';
+            $appointment->save();
             return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
         }
 

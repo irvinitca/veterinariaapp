@@ -58,7 +58,12 @@ class AppointmentsController extends Controller
 
         return view('recepcion.creacion-citas', compact('pets', 'users'));
     }
-    public function pagos($pet_id = null)
+    public function pago($appointmentId){
+
+        $appointment = Appointment::find($appointmentId);
+        return view('recepcion.pago',compact('appointment'));
+    }
+    public function pagos()
     {
     
         $appointments = Appointment::where('status','Pagado')->orderBy('date_start')->paginate(10);
@@ -66,6 +71,15 @@ class AppointmentsController extends Controller
 
         return view('recepcion.pagos', compact('appointments'));
     }
+    public function diagnosticadas()
+    {
+    
+        $appointments = Appointment::where('status','Diagnosticada')->orderBy('date_start')->paginate(10);
+
+
+        return view('recepcion.citas-diagnosticadas', compact('appointments'));
+    }
+    
     public function cancel($appointmentId)
     {
         $appointment = Appointment::find($appointmentId);
@@ -95,7 +109,26 @@ class AppointmentsController extends Controller
     }
 
 
+    public function pay(Request $request)
+    {
+        // Validación de los datos enviados en el formulario
+        $validatedData = $request->validate([
+            'total' => 'required',
+            'appointmentId'=>'required'
+        ]);
+        $appointment = Appointment::find($request->appointmentId);
 
+        if ($appointment) {
+            $appointment->status = 'Pagado';
+            $appointment->cobrador_id =auth()->id();
+            $appointment->total = $request->total;
+            $appointment->save();
+
+            return redirect()->route('pagos')->with('success', 'La cita ha sido pagada exitosamente.(Puedes ver el registro en la tabla de citas pagadas)');
+        } else {
+           return back()->withInput()->withErrors(['msg' => "No existe una cita con ese id"]);
+        }
+    }
     public function store(Request $request)
     {
         // Validación de los datos enviados en el formulario

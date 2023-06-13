@@ -20,7 +20,7 @@ class HistoriesSeeder extends Seeder
         })->get();
         
         foreach ($appointments as $appointment) {
-            if ($appointment->status === 'Pagado') {
+            if ($appointment->status === 'Pagado'||$appointment->status ==='Diagnosticada') {
                 $randomUser = $users->random();
                 History::create([
                     'appointment_id' => $appointment->id,
@@ -30,7 +30,7 @@ class HistoriesSeeder extends Seeder
                     'indications' => 'Indicaciones para la cita ' . $appointment->id,
                     'medicaments' => 'Medicamentos para la cita ' . $appointment->id
                 ]);
-                $appointment->total = 100;
+                $appointment->total = rand(50, 100);
                 $appointment->cobrador_id=$randomUser->id;
                 $appointment->date_payed= now()->subDays(1);
                 $appointment->save();

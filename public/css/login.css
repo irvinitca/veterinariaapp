@@ -116,11 +116,18 @@ input {
   background: transparent;
   border: 0;
   color: #f2f2f2;
-  font-size: 20px;
+  font-size: 18px;
   height: 30px;
   line-height: 30px;
   outline: none !important;
   width: 100%;
+}
+input:-internal-autofill-selected {
+background: transparent!important;
+}
+input[type="password"]
+{
+ color: #7d094b;
 }
 input::-moz-focus-inner { 
   border: 0; 
