@@ -77,10 +77,10 @@
                     @auth
                     @if (auth()->user()->hasRole('Veterinario'))
                         <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('vet.dashboard')">
-                            {{ __('Pacientes Asignados (Citas)') }}
+                            {{ __('Citas Asignadas') }}
                         </x-nav-link>
                         <x-nav-link href="{{ route('pet.histories') }}" :active="request()->routeIs('pet.histories')">
-                            {{ __('Pacientes Asignados (Historial)') }}
+                            {{ __('Mis Pacientes Asignados (Historial)') }}
                         </x-nav-link>
                     @endif
                 @endauth

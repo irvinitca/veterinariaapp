@@ -13,7 +13,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <h2>Pacientes Asignados a Dr./Dra:   {{ auth()->user()->name }} </h2>
+            <h2>Citas asignadas :  {{ auth()->user()->name }} </h2>
         </div>
 
     </div>

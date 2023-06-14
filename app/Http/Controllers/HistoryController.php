@@ -102,6 +102,7 @@ class HistoryController extends Controller
             $appointments = DB::table('appointments')
             ->join('pets', 'appointments.pet_id', '=', 'pets.id')
             ->join('users', 'pets.owner_id', '=', 'users.id')
+            ->where('appointments.user_id', '=', $user_id)
             ->selectRaw('pets.id, pets.name, users.name as owner_name')
             ->groupBy('pets.id', 'pets.name', 'users.name')
             ->paginate(10);
