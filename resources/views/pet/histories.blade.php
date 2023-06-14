@@ -34,7 +34,7 @@
                             <td>{{ $appointment->name }}</td> 
                             <td>{{$appointment->owner_name}}</td>                  
                             <td>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#history-modal" data-pet-id="{{ $appointment->id }}">Detalle</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#history-modal" data-pet-id="{{ $appointment->id }}">Historial</button>
                             </td>
                         </tr>
                     @endforeach
@@ -44,7 +44,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="history-modal" tabindex="-1" role="dialog" aria-labelledby="history-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="history-modal-label">Historial de la mascota</h5>
@@ -57,8 +57,10 @@
                     <table class="fl-table">
                         <thead>
                             <tr>
-                                <th>History ID</th>
-                                <th>Diagnostic</th>
+                                <th>Fecha</th>
+                                <th>Diagnostico</th>
+                                <th>Medicamento</th>
+                                <th>Indicaciones</th>
                             </tr>
                         </thead>
                         <tbody id="history-modal-body" >
@@ -83,14 +85,15 @@
             modalBody.empty();
 
 // Realizar la petición AJAX para obtener el historial de la mascota
-$.ajax({
+    $.ajax({
             url: '/pets/' + petId + '/history',
             method: 'GET',
             success: function (response) {
+                console.log(response);
                 // Actualizar el contenido del modal con el historial obtenido
                 for (var i = 0; i < response.length; i++) {
                     var history = response[i];
-                    var row = '<tr><td>' + history.id + '</td><td>' + history.diagnostic + '</td></tr>';
+                    var row = '<tr><td>' + history.date_resolved + '</td><td>' + history.diagnostic + '</td><td>'+history.medicaments+ '</td><td>'+history.indications+ '</td></tr>';
                     modalBody.append(row);
                 }
             },

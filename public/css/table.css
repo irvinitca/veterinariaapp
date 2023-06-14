@@ -89,6 +89,7 @@ h2{
 .bodyheight{
     max-height: 30rem;
     overflow-y: scroll;
+    margin: 1rem;
 }
 /* Responsive */
 
