@@ -86,7 +86,10 @@ h2{
 .fl-table tr:nth-child(even) {
     background: #F8F8F8;
 }
-
+.bodyheight{
+    max-height: 30rem;
+    overflow-y: scroll;
+}
 /* Responsive */
 
 @media (max-width: 767px) {

@@ -7,7 +7,6 @@
 <div class="page">
     <div class="container">
       <div class="left">
-        <div class="login">Login</div>
         <div class="eula">
             <img  class="logologin" src="/logo/cio-logo.png"/>
         </div>

@@ -19,3 +19,5 @@ use App\Http\Livewire\SelectAnidado;
  Route::get('/vet/dashboard', [AppointmentsController::class, 'index'])->name('vet.dashboard');
  Route::patch('/vet/update-status/{id}', [AppointmentsController::class, 'updateStatus'])->name('vet.updateStatus');
  Route::get('/appointments.update', [AppointmentsController::class, 'update'])->name('citas.editar');
+ Route::get('/pet.histories', [HistoryController::class, 'histories'])->name('pet.histories');
+ Route::get('/pets/{pet}/history', [HistoryController::class, 'history']);

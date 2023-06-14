@@ -52,6 +52,7 @@ class AdminUserSeeder extends Seeder
             'email' => 'veterinariovt@yopmail.com',
             'password' => bcrypt('123456789')
         ]);
+        
         $veterinarioUser->assignRole('Veterinario');
 
         for ($i = 1; $i <= 20; $i++) {

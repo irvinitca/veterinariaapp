@@ -79,6 +79,9 @@
                         <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('vet.dashboard')">
                             {{ __('Pacientes Asignados (Citas)') }}
                         </x-nav-link>
+                        <x-nav-link href="{{ route('pet.histories') }}" :active="request()->routeIs('pet.histories')">
+                            {{ __('Pacientes Asignados (Historial)') }}
+                        </x-nav-link>
                     @endif
                 @endauth
                 </div>

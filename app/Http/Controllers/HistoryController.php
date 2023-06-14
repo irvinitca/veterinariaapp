@@ -11,6 +11,7 @@ use App\Models\Role;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
 {
@@ -88,6 +89,26 @@ class HistoryController extends Controller
             return redirect()->route('vet.diagnostico-nuevo')->with('success', 'Diagnóstico creado exitosamente');
         }
 
+        public function history($pet)
+{
+   
+    $history = History::whereHas('appointment', function ($query) use ($pet) {
+        $query->where('pet_id', $pet);
+    })->get();
+    return response()->json($history);
+}
+        public function histories(){
+            $user_id = auth()->id();
+            $appointments = DB::table('appointments')
+            ->join('pets', 'appointments.pet_id', '=', 'pets.id')
+            ->join('users', 'pets.owner_id', '=', 'users.id')
+            ->selectRaw('pets.id, pets.name, users.name as owner_name')
+            ->groupBy('pets.id', 'pets.name', 'users.name')
+            ->paginate(10);
+        
+
+            return view('pet.histories', compact('appointments'));
+        }
                 public function store(Request $request)
         {
             $validatedData = $request->validate([

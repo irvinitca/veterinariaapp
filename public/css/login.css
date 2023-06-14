@@ -9,13 +9,13 @@
   background: #2D2F36;
 }
 .logologin{
-  width: 10rem;
-  height: 10rem;
-  filter: invert();
+  margin-top: 25%;
+  width: 11rem;
+  height: 11rem;
 }
 body {
   background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,64,1) 35%, rgba(144,11,121,1) 100%);
+background: linear-gradient(90deg, rgb(71 74 89) 0%, rgba(121,9,64,1) 35%, rgb(97 181 155) 100%);
   font-family: 'Inter UI', sans-serif;
   margin: 0;
   padding: 20px;
@@ -49,7 +49,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,64,1) 35%, rgba
   }
 }
 .left {
-  background: white;
+  background: #1e00265c;
   height: calc(100% - 40px);
   top: 20px;
   position: relative;
@@ -67,7 +67,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,64,1) 35%, rgba
   font-size: 50px;
   font-weight: 900;
   margin: 1rem 40px 0px 5rem;
-  color: #760d61;
+  color: #707075;
 }
 .eula {
   color: #999;

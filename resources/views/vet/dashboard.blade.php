@@ -31,7 +31,7 @@
                 <th>Motivo</th>
                 <th>Veterinario</th>
                 <th>DIAGNOSTICO</th>
-                <th>FINALIZAR</th>
+                <th>HISTORIAL</th>
             </tr>
         </thead>
         <tbody>
@@ -50,13 +50,9 @@
                             </a>
                     </td>
                     <td>
-                        <form action="{{ route('vet.updateStatus', $appointment->id) }}" method="POST">
-                            @method('PATCH')
-                            @csrf
-                            <button type="submit" class="btn btn-secondary iconbtn" onclick="return confirm('¿Estás seguro de que deseas finalizar la consulta?')">
-                                <i class="fa-regular fa-calendar-check"></i>
-                            </button>
-                        </form>
+                        <button>
+                            <i class="fa-regular fa-calendar-check"></i>
+                       </button>
                     </td>
 
                 </tr>
