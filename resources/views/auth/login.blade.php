@@ -8,7 +8,7 @@
     <div class="container">
       <div class="left">
         <div class="eula">
-            <img  class="logologin" src="/logo/cio-logo.png"/>
+            <img  class="logologin" src="{{ asset('logo/cio-logo.png') }}"/>
         </div>
         
     </div>
