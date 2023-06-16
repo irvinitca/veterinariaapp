@@ -73,6 +73,7 @@
     </div>
 
     <script>
+            var baseUrl = "{{ config('app.base_url') }}";
         // Escuchar el evento 'show.bs.modal' para cargar los datos del historial de la mascota seleccionada
         $('#history-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Botón que activó el modal
@@ -86,7 +87,7 @@
 
 // Realizar la petición AJAX para obtener el historial de la mascota
     $.ajax({
-            url: '/pets/' + petId + '/history',
+            url: baseUrl+'pets/' + petId + '/history',
             method: 'GET',
             success: function (response) {
                 console.log(response);

@@ -187,5 +187,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
+    'base_url' => env('BASE_URL', 'https://fcoquezadalab.com/grupo1/'),
 
 ];

@@ -73,6 +73,7 @@
     {{ $appointments->links() }}
 </div>
 <script>
+    var baseUrl = "{{ config('app.base_url') }}";
     function confirmCancel(appointmentId) {
       
     
@@ -89,7 +90,7 @@ Swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
    // Realizar la petición al controlador para cancelar la cita
-   axios.put('/appointments/' + appointmentId + '/cancel')
+   axios.put(baseUrl+'appointments/' + appointmentId + '/cancel')
   .then((response) => {
     Swal.fire(
       '¡Cancelada!',

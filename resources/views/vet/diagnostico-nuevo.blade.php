@@ -128,6 +128,7 @@
         });
     </script>
     <script>
+         var baseUrl = "{{ config('app.base_url') }}";
         $(document).ready(function() {
             $('.open-modal').click(function(e) {
                 e.preventDefault();
@@ -136,7 +137,7 @@
 
                 // Realizar una petición AJAX al controlador para obtener los datos del diagnóstico
                 $.ajax({
-                    url: '/vet/diagnostico-nuevo/' + appointmentId + '/details',
+                    url: baseUrl+ 'vet/diagnostico-nuevo/' + appointmentId + '/details',
                     method: 'GET',
                     success: function(response) {
                         // aqui se crea el contenido del modal con los datos obtenidos

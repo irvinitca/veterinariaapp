@@ -72,7 +72,44 @@ class PDFController extends Controller
 
         return view('admin.formReportePacientesVeterinario', compact('users'));
     }
+    public function pdfCanceladas (){
 
+
+        return view('admin.formReporteCitasCanceladas');
+    }
+    
+    public function generatePDFCanceladas(Request $request)
+    {
+        $date_start = $request->input('date_start');
+        $date_end = $request->input('date_end');
+       
+
+        // Validar si los parámetros son requeridos
+        if (!$date_start || !$date_end) {
+            return response()->json(['error' => 'Los parámetros date_start, date_end y user_id son requeridos.'], 400);
+        }
+        $appointments = DB::table('appointments')
+        ->join('pets', 'appointments.pet_id', '=', 'pets.id')
+        ->join('owners', 'pets.owner_id', '=', 'owners.id')
+        ->select('pets.name as pet_name', 'appointments.date_start','appointments.reason', 'appointments.total', 'owners.name as owner_name')
+        ->where('appointments.date_start', '>=', $date_start)
+        ->where('appointments.date_start', '<=', $date_end)
+        ->whereIn('status', ['Cancelada', 'Pagado'])
+        ->orderBy('appointments.date_start')
+        ->get();
+
+        $data = [
+            'title'=>'Citas Canceladas',
+            'desde' => Carbon::parse($date_start)->format('d M y H:i:s'),
+            'hasta' => Carbon::parse($date_end)->format('d M y H:i:s'),
+            'appointments' =>$appointments
+        ];
+
+        $pdf = PDF::loadView('admin.reporteCanceladas', $data);
+
+        return $pdf->download('reporteCanceladas.pdf');
+
+    }
     public function generatePDFIngresos(Request $request)
     {
         $month = $request->input('month');

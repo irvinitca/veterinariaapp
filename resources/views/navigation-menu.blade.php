@@ -29,11 +29,8 @@
                                     <x-dropdown-link target="_blank" href="{{ route('admin.pdf-ingresos') }}" >
                                         {{ __('Reporte Ingresos Mensuales') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
-                                        {{ __('Reporte Ingresos Por Veterinarios') }}
-                                    </x-dropdown-link>
-                                    <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
-                                        {{ __('Reporte Z') }}
+                                    <x-dropdown-link target="_blank" href="{{ route('admin.pdf-canceladas') }}" >
+                                        {{ __('Reporte Citas Canceladas') }}
                                     </x-dropdown-link>
                                 </div>
                             </x-slot>
@@ -65,10 +62,13 @@
                                 <x-slot name="content">
                                     <div class="w-60">
                                         <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-pacientes') }}" >
-                                            {{ __('Reporte Paciente Por Veterinarios') }}
+                                            {{ __('Reporte Citas-Paciente Por Veterinarios') }}
                                         </x-dropdown-link>
                                         <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresos') }}" >
                                             {{ __('Reporte Ingresos Mensuales') }}
+                                        </x-dropdown-link>
+                                        <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-canceladas') }}" >
+                                            {{ __('Reporte Citas Canceladas') }}
                                         </x-dropdown-link>
                                     </div>
                                 </x-slot>
