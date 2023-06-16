@@ -76,19 +76,20 @@ p{
 
     <h4>
         <img class="logovet" src="{{ public_path('logo/cio-logo.png') }}" alt="Logo de CIO" style="width: 80px; height:80px">
-        <label style="margin-top:-5rem">VeterinariaCIO</label>
+        <label style="margin-top:-5rem">Veterinaria CIO</label>
     </h4>
     <h4>{{ $title }}</h4>
-    <p>Desde {{ $desde }} Hasta {{ $hasta }}</p>
+    <p>Correpondientes al mes de {{ $month }} del año {{ $year }}</p>
 
 
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Dueño</th>
-            <th>Paciente</th>
-            <th>Fecha</th>
-            <th>Motivo</th>
+            <th>ID-CITA</th>
+            <th>MES</th>
+            <th>AÑO</th>
+            <th>TIPO DE CONSULTA</th>
+            <th>IINGRESO TOTAL MES/th>
             <th>Monto</th>
         </tr>
         </thead>
@@ -96,16 +97,13 @@ p{
         @foreach($appointments as $appointment)
 
         <tr>
-            <td>{{ $appointment->owner_name }}</td>
-            <td>{{ $appointment->pet_name }}</td>
-            <td>{{ \Carbon\Carbon::parse($appointment->date_start)->format('d M y H:i:s') }}</td>
-            <td>{{ $appointment->reason }}</td>
+            <td>{{ $appointment->id }}</td>
+            <td>{{ $month }}</td>
+            <td>{{ $year }}</td>
+            <td>{{ $appointment->type }}</td>
+            <td>{{ $total }}</td>
             <td>
-                @if($appointment->total)
-                    {{ $appointment->total }}
-                @else
-                    Sin cancelar
-                @endif
+
             </td>
         </tr>
         @endforeach

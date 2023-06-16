@@ -12,8 +12,8 @@
             <img class="logovet" src="{{ asset('logo/cio-logo.png') }}" alt="Logo de CIO">
             VeterinariaCIO
           </h1>
-          <div class="puppy">
-            <img  class="reportepng" src="/img/reportes.png"/>
+          <div class="">
+            <img  class="reportepng" src="/img/reporte-ingresos.png"/>
           </div>
         </div>
         <div class="right-container">
@@ -22,27 +22,46 @@
             </header>
             <div class="formdiv">
                 <form action="{{ route('admin.generate-pdf-ingresos') }}" method="POST">
-                @csrf
+                    @csrf
 
-                <div class="form-group">
-                    <label for="date_start">Desde:</label>
-                    <input type="datetime-local" name="date_start" id="date_start" class="form-control" required>
-                </div>
+                    <div class="form-group">
+                        <label for="month">Mes:</label>
+                        <select name="month" id="month" class="form-control" required>
+                            <option value="">Seleccionar mes</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="date_start">Hasta:</label>
-                    <input type="datetime-local" name="date_end" id="date_end" class="form-control" required>
-                </div>
+                    <div class="form-group">
+                        <label for="year">Año:</label>
+                        <select name="year" id="year" class="form-control" required>
+                            <option value="">Seleccionar año</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="type">Tipo de Cita:</label>
-                    <select name="type" id="type" class="form-control select2" required>
-                        <option value="">Sin asignar</option>
-                        @foreach ($appointments as $type)
-                            <option value="{{$type}}">{{$type}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="type">Tipo de Cita:</label>
+                        <select name="type" id="type" class="form-control select2" required>
+                            <option value="">Sin asignar</option>
+                            @foreach ($appointments as $type)
+                                <option value="{{$type}}">{{$type}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                 @if (session('error'))
                 <div class="alert alert-danger">

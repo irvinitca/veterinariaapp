@@ -74,29 +74,37 @@ class PDFController extends Controller
 
     public function generatePDFIngresos(Request $request)
     {
-        $date_start = $request->input('date_start');
-        $date_end = $request->input('date_end');
+        $month = $request->input('month');
+        $year = $request->input('year');
         $type = $request->input('type');
 
-        // Validar si los parámetros son requeridos
-        if (!$date_start || !$date_end || !$type) {
-            return response()->json(['error' => 'Los parámetros date_start, date_end y type son requeridos.'], 400);
+        if (!$month || !$year || !$type) {
+            return response()->json(['error' => 'Los parámetros month, year y type son requeridos.'], 400);
         }
 
+        $start_date = Carbon::create($year, $month, 1)->startOfMonth();
+        $end_date = Carbon::create($year, $month, 1)->endOfMonth();
+
         $appointments = DB::table('appointments')
-        ->select('date_start', 'total')
+        ->select('id','date_start', 'total', 'type')
         ->where('type', $type)
         ->whereBetween('date_start', [$start_date, $end_date])
         ->get();
 
-        $data = [
-            'title' => 'Reporte de Ingresos Mensuales',
-            'appointments' => $appointments
-        ];
+            $data = [
+                'title' => 'Reporte de Ingresos Mensuales',
+
+                'month' => $month,
+                'year' => $year,
+                'total' => $appointments->sum('total'),
+                'appointments' => $appointments
+            ];
+
         $pdf = PDF::loadView('admin.reporteIngresosMes', $data);
 
         return $pdf->download('reporteIngresos.pdf');
     }
+
 
     public function pdfIngresos (){
 

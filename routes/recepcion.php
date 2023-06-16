@@ -23,7 +23,7 @@ Route::get('/recepcion/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->
 Route::post('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
 
 Route::get('/recepcion/pdf-ingresos', [PDFController::class, 'pdfIngresos'])->name('recepcion.pdf-ingresos');
-Route::post('/admin/generate-pdf-ingresos', [PDFController::class, 'pdfIngresos'])->name('admin.generate-pdf-ingresos');
+Route::post('/admin/generate-pdf-ingresos', [PDFController::class, 'generatePDFIngresos'])->name('admin.generate-pdf-ingresos');
 
 //MASCOTAS
 Route::get('/pet/dashboard', [PetController::class, 'index'])->name('pet.dashboard');
