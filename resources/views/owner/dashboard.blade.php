@@ -42,7 +42,7 @@
                     <td>{{ $owner->phone }}</td>
                     <td>
                     <form id="form-eliminar-{{ $owner->id }}" action="{{ route('owners.destroy', $owner->id) }}" method="POST">
-                        <a href="/owners/{{$owner->id}}/edit" class="btn btn-primary iconbtn">
+                        <a href="{{ config('app.base_url') }}owners/{{$owner->id}}/edit" class="btn btn-primary iconbtn">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>
                         @csrf

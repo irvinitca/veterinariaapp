@@ -46,11 +46,11 @@
                     <td>{{ $pet->owner->name }}</td>
                     <td>
                     <form id="form-eliminar-{{ $pet->id }}" action="{{ route('pets.destroy', $pet->id) }}" method="POST">
-                        <a href="/citas-nuevas/{{$pet->id}}" class="btn btn-primary iconbtn">
+                        <a href="{{ config('app.base_url') }}citas-nuevas/{{$pet->id}}" class="btn btn-primary iconbtn">
                             <i class="fa-solid fa-calendar-plus"></i>
                         </a>
 
-                        <a href="/pets/{{$pet->id}}/edit" class="btn btn-primary iconbtn">
+                        <a href="{{ config('app.base_url') }}pets/{{$pet->id}}/edit" class="btn btn-primary iconbtn">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>
                         @csrf
