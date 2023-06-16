@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Appointment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\DB;
+
 
 class PDFController extends Controller
 {
@@ -15,7 +17,7 @@ class PDFController extends Controller
         $date_start = $request->input('date_start');
         $date_end = $request->input('date_end');
         $user_id = $request->input('user_id');
-    
+
         // Validar si los parámetros son requeridos
         if (!$date_start || !$date_end || !$user_id) {
             return response()->json(['error' => 'Los parámetros date_start, date_end y user_id son requeridos.'], 400);
@@ -32,7 +34,7 @@ class PDFController extends Controller
         ->whereIn('status', ['Activo', 'Pagado'])
         ->orderBy('appointments.date_start')
         ->get();
-    
+
         $data = [
             'title' => 'Reportes de pacientes del Dr.'.$user->name,
             'desde' => Carbon::parse($date_start)->format('d M y H:i:s'),
@@ -69,4 +71,38 @@ class PDFController extends Controller
 
         return view('admin.formReportePacientesVeterinario', compact('users'));
     }
+
+    public function generatePDFIngresos(Request $request)
+    {
+        $date_start = $request->input('date_start');
+        $date_end = $request->input('date_end');
+        $type = $request->input('type');
+
+        // Validar si los parámetros son requeridos
+        if (!$date_start || !$date_end || !$type) {
+            return response()->json(['error' => 'Los parámetros date_start, date_end y type son requeridos.'], 400);
+        }
+
+        $appointments = DB::table('appointments')
+        ->select('date_start', 'total')
+        ->where('type', $type)
+        ->whereBetween('date_start', [$start_date, $end_date])
+        ->get();
+
+        $data = [
+            'title' => 'Reporte de Ingresos Mensuales',
+            'appointments' => $appointments
+        ];
+        $pdf = PDF::loadView('admin.reporteIngresosMes', $data);
+
+        return $pdf->download('reporteIngresos.pdf');
+    }
+
+    public function pdfIngresos (){
+
+        $appointments = Appointment::pluck('type')->unique();
+
+        return view('admin.formReporteIngresosMes' , compact('appointments'));
+    }
+
 }

@@ -26,11 +26,11 @@
                                     <x-dropdown-link target="_blank" href="{{ route('admin.pdf-pacientes') }}" >
                                         {{ __('Reporte Paciente Por Veterinarios') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
-                                        {{ __('Reporte X') }}
+                                    <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresos') }}" >
+                                        {{ __('Reporte Ingresos Mensuales') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
-                                        {{ __('Reporte Y') }}
+                                        {{ __('Reporte Ingresos Por Veterinarios') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >
                                         {{ __('Reporte Z') }}
@@ -61,13 +61,14 @@
                             <x-dropdown  width="80">
                                 <x-slot name="trigger">
                                 <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
-
-
                                 </x-slot>
                                 <x-slot name="content">
                                     <div class="w-60">
                                         <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-pacientes') }}" >
                                             {{ __('Reporte Paciente Por Veterinarios') }}
+                                        </x-dropdown-link>
+                                        <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresos') }}" >
+                                            {{ __('Reporte Ingresos Mensuales') }}
                                         </x-dropdown-link>
                                     </div>
                                 </x-slot>
