@@ -26,7 +26,7 @@
                                     <x-dropdown-link target="_blank" href="{{ route('admin.pdf-pacientes') }}" >
                                         {{ __('Reporte Paciente Por Veterinarios') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresos') }}" >
+                                    <x-dropdown-link target="_blank" href="{{ route('admin.pdf-ingresos') }}" >
                                         {{ __('Reporte Ingresos Mensuales') }}
                                     </x-dropdown-link>
                                     <x-dropdown-link  target="_blank" href="{{ route('admin.generate-pdf-users') }}" >

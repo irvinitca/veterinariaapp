@@ -5,8 +5,15 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-image: ">
     <style>
+ body {
+            background-color: #cefcce;
+            background-repeat: no-repeat;
+            background-position: top right;
+            background-size: cover;
+        }
+
 .iconbtn{
 	max-height: 30px!important;
     width: 30px!important;
@@ -84,7 +91,10 @@ span{
         <img class="logovet" src="{{ public_path('logo/cio-logo.png') }}" alt="Logo de CIO" style="width: 80px; height:80px">
         <label style="margin-top:-5rem">Veterinaria CIO</label>
     </h4>
-    <h4 class="text-center">{{ $title }}</h4>
+    <div style="position: absolute; top: 10px; right: 20px;">
+        <img src="{{ public_path('img/reporte-ingresos.png') }}" alt="Imagen" style="width: 125px; height: 125px;">
+    </div>
+    <h4 class="text-center">{{ $title }}</h4><br>
     <p>Correpondientes al mes de <span> {{ $monthName }} </span>del año<span> {{ $year }}</span> <br>
         Tipo de Citas: <span> {{ $type }}</span> <br>
         **INGRESO TOTAL DE {{ $monthName }}: <span>${{ $total }} dólares</span></p>
