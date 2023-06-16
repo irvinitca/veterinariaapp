@@ -20,11 +20,8 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 //REPORTES
 Route::get('/admin/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->name('admin.pdf-pacientes');
-Route::post('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
 
 Route::get('/admin/pdf-ingresos', [PDFController::class, 'pdfIngresos'])->name('admin.pdf-ingresos');
-Route::post('/admin/generate-pdf-ingresos', [PDFController::class, 'generatePDFIngresos'])->name('admin.generate-pdf-ingresos');
 
 
 Route::get('/admin/pdf-canceladas', [PDFController::class, 'pdfCanceladas'])->name('admin.pdf-canceladas');
-Route::post('/admin/generate-pdf-canceladas', [PDFController::class, 'generatePDFCanceladas'])->name('admin.generate-pdf-canceladas');

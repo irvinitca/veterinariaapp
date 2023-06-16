@@ -20,13 +20,10 @@ Route::post('/appointments.pay', [AppointmentsController::class, 'pay'])->name('
 Route::put('/appointments/{appointmentId}/cancel', [AppointmentsController::class, 'cancel'])->name('appointments.cancel');
 //REPORTES
 Route::get('/recepcion/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->name('recepcion.pdf-pacientes');
-Route::post('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
 
 Route::get('/recepcion/pdf-ingresos', [PDFController::class, 'pdfIngresos'])->name('recepcion.pdf-ingresos');
-Route::post('/admin/generate-pdf-ingresos', [PDFController::class, 'generatePDFIngresos'])->name('admin.generate-pdf-ingresos');
 
 Route::get('/recepcion/pdf-canceladas', [PDFController::class, 'pdfCanceladas'])->name('recepcion.pdf-canceladas');
-Route::post('/admin/generate-pdf-canceladas', [PDFController::class, 'generatePDFCanceladas'])->name('admin.generate-pdf-canceladas');
 
 //MASCOTAS
 Route::get('/pet/dashboard', [PetController::class, 'index'])->name('pet.dashboard');
