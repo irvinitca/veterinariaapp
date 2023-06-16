@@ -122,6 +122,7 @@ class AppointmentsController extends Controller
             $appointment->status = 'Pagado';
             $appointment->cobrador_id =auth()->id();
             $appointment->total = $request->total;
+            $appointment->date_payed=Carbon::now();
             $appointment->save();
 
             return redirect()->route('pagos')->with('success', 'La cita ha sido pagada exitosamente.(Puedes ver el registro en la tabla de citas pagadas)');
