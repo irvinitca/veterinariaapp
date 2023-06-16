@@ -55,7 +55,7 @@ class AdminUserSeeder extends Seeder
         
         $veterinarioUser->assignRole('Veterinario');
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 2; $i++) {
             $index = $i;
 
             $adminUser = User::factory()->create([

@@ -22,7 +22,7 @@ class AppointmentsSeeder extends Seeder
                 $q->where('name', 'Veterinario');
             })->pluck('id'); // Obtener todos los IDs de usuarios existentes
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             $dateStart = now()->addDays(rand(-6, 8))->startOfHour()->addMinutes(rand(0, 47) * 30);
             $dateEnd = $dateStart->copy()->addMinutes(30);
             

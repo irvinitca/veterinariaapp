@@ -16,7 +16,7 @@ class PetsSeeder extends Seeder
     {
         $owners = Owner::all(); // Obtener todos los propietarios existentes
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             Pet::create([
                 'owner_id' => $owners->random()->id, // Asignar un propietario aleatorio
                 'name' => 'Mascota ' . $i,
