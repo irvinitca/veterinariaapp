@@ -46,7 +46,7 @@
                     <td>{{ $user->created_at }}</td>
                     <td>
                     <form id="form-eliminar-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST">
-                        <a href="/users/{{$user->id}}/edit" class="btn btn-primary iconbtn">
+                        <a href="{{ config('app.base_url') }}users/{{$user->id}}/edit" class="btn btn-primary iconbtn">
                             <i class="fa-solid fa-file-pen"></i>
                         </a>
                         @csrf
