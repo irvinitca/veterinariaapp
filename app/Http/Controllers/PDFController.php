@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 
@@ -85,24 +86,27 @@ class PDFController extends Controller
         $start_date = Carbon::create($year, $month, 1)->startOfMonth();
         $end_date = Carbon::create($year, $month, 1)->endOfMonth();
 
-        $appointments = DB::table('appointments')
-        ->select('id','date_start', 'total', 'type')
+        $monthName = Carbon::create()->month($month)->formatLocalized('%B');
+
+        $appointments = Appointment::with('pet')
+        ->select('id','date_start', 'pet_id', 'total', 'type')
         ->where('type', $type)
         ->whereBetween('date_start', [$start_date, $end_date])
         ->get();
 
             $data = [
                 'title' => 'Reporte de Ingresos Mensuales',
-
                 'month' => $month,
+                'monthName' => $monthName,
                 'year' => $year,
+                'type' => $type,
                 'total' => $appointments->sum('total'),
                 'appointments' => $appointments
             ];
 
         $pdf = PDF::loadView('admin.reporteIngresosMes', $data);
 
-        return $pdf->download('reporteIngresos.pdf');
+        return $pdf->download('reporteIngresosPorMes.pdf');
     }
 
 

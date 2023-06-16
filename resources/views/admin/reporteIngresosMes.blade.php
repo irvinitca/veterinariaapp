@@ -69,27 +69,33 @@ h4{
     color:#324960;
 }
 p{
-    color: #4FC3A1;
-    margin-bottom: 3rem;
+    color: #36866e;
+    font-size: 20px;
 }
+span{
+    color: rgb(167, 41, 41);
+    font-weight: bold;
+    font-size: 20px;
+}
+
     </style>
 
     <h4>
         <img class="logovet" src="{{ public_path('logo/cio-logo.png') }}" alt="Logo de CIO" style="width: 80px; height:80px">
         <label style="margin-top:-5rem">Veterinaria CIO</label>
     </h4>
-    <h4>{{ $title }}</h4>
-    <p>Correpondientes al mes de {{ $month }} del año {{ $year }}</p>
-
+    <h4 class="text-center">{{ $title }}</h4>
+    <p>Correpondientes al mes de <span> {{ $monthName }} </span>del año<span> {{ $year }}</span> <br>
+        Tipo de Citas: <span> {{ $type }}</span> <br>
+        **INGRESO TOTAL DE {{ $monthName }}: <span>${{ $total }} dólares</span></p>
 
     <table class="fl-table">
         <thead>
         <tr>
-            <th>ID-CITA</th>
-            <th>MES</th>
-            <th>AÑO</th>
-            <th>TIPO DE CONSULTA</th>
-            <th>IINGRESO TOTAL MES/th>
+            <th># CITA</th>
+            <th>FECHA</th>
+            <th>MASCOTA</th>
+            <th>TIPO DE CITA</th>
             <th>Monto</th>
         </tr>
         </thead>
@@ -98,12 +104,15 @@ p{
 
         <tr>
             <td>{{ $appointment->id }}</td>
-            <td>{{ $month }}</td>
-            <td>{{ $year }}</td>
+            <td>{{ $appointment->date_start }}</td>
+            <td>{{ $appointment->pet->name }}   </td>
             <td>{{ $appointment->type }}</td>
-            <td>{{ $total }}</td>
             <td>
-
+                @if($appointment->total)
+                    {{ $appointment->total }}
+                @else
+                    Sin cancelar
+                @endif
             </td>
         </tr>
         @endforeach
