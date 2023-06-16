@@ -26,7 +26,7 @@
             </header>
 
             <div class="formdiv">
-                <form action="/owners/{{ $owner->id }}" method="POST" onsubmit="return confirmarGuardar(event)">
+                <form action="{{ config('app.base_url') }}owners/{{ $owner->id }}" method="POST" onsubmit="return confirmarGuardar(event)">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
