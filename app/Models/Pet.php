@@ -17,6 +17,7 @@ class Pet extends Model
         'breed',
         'type',
         'age',
+        'estado',
     ];
 
     public function owner()

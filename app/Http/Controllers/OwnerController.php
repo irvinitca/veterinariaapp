@@ -95,9 +95,16 @@ class OwnerController extends Controller
     public function destroy($id)
     {
         $owner = Owner::find($id);
-        $owner->estado=false;
-        $owner->save();
-
+        if ($owner) {
+            $owner->estado = false;
+            $owner->save();
+            // aqui s obtiene las mascotas del dueño y se actualiza su estado
+            $owner->pets()->update(['estado' => false]);
+        }
         return redirect('/owner/dashboard');
     }
+
+
+
+
 }
