@@ -14,9 +14,9 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth
                         @if (auth()->user()->hasRole('Administrador'))
-                        <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                            <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Usuarios') }}
-                        </x-nav-link>
+                            </x-nav-link>
                         <x-dropdown  width="80">
                             <x-slot name="trigger">
                             <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
@@ -224,13 +224,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
+           <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -245,12 +239,85 @@
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>
-
+         <!--  Navigation Links Responsive -->
             <div class="mt-3 space-y-1">
-                <!-- Account Management -->
-                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+            @auth
+                @if (auth()->user()->hasRole('Administrador'))
+                    <x-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                    {{ __('Usuarios') }}
+                    </x--responsive-nav-link>
+                    <x-dropdown  width="80">
+                        <x-slot name="trigger">
+                        <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="w-60">
+                                <x-dropdown-link target="_blank" href="{{ route('admin.pdf-pacientes') }}" >
+                                    {{ __('Reporte Paciente Por Veterinarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link target="_blank" href="{{ route('admin.pdf-ingresos') }}" >
+                                    {{ __('Reporte Ingresos Mensuales') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link target="_blank" href="{{ route('admin.pdf-ingresosvet') }}" >
+                                    {{ __('Reporte Ingresos Por Veterinarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link target="_blank" href="{{ route('admin.pdf-canceladas') }}" >
+                                    {{ __('Reporte Citas Canceladas') }}
+                                </x-dropdown-link>
+                            </div>
+                        </x-slot>
+                    </x-dropdown>
+                @endif
+            @endauth
+            @auth
+                @if (auth()->user()->hasRole('Recepcion'))
+                    <x-responsive-nav-link href="{{ route('citas') }}" :active="request()->routeIs('citas')">
+                        {{ __('Citas Activas') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('citas.diagnosticadas') }}" :active="request()->routeIs('citas.diagnosticadas')">
+                        {{ __('Citas Diagnosticadas') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('pagos') }}" {{-- :active="request()->routeIs('admin.dashboard')" --}}>
+                        {{ __('Citas Pagadas') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('owner.dashboard') }}"  :active="request()->routeIs('owner.dashboard')">
+                        {{ __('Clientes') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('pet.dashboard') }}"  :active="request()->routeIs('pet.dashboard')">
+                        {{ __('Mascotas') }}
+                    </x-responsive-nav-link>
+                    <x-dropdown  width="80">
+                        <x-slot name="trigger">
+                        <div class="divReportesMenu"> <span>{{ __('Reportes') }}</span></div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="w-60">
+                                <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-pacientes') }}" >
+                                    {{ __('Reporte Citas-Paciente Por Veterinarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresos') }}" >
+                                    {{ __('Reporte Ingresos Mensuales') }}
+                                </x-dropdown-link><x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresosvet') }}" >
+                                    {{ __('Reporte Ingresos Por Veterinarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-canceladas') }}" >
+                                    {{ __('Reporte Citas Canceladas') }}
+                                </x-dropdown-link>
+                            </div>
+                        </x-slot>
+                    </x-dropdown>
+                @endif
+            @endauth
+            @auth
+                @if (auth()->user()->hasRole('Veterinario'))
+                    <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('vet.dashboard')">
+                        {{ __('Citas Asignadas') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('pet.histories') }}" :active="request()->routeIs('pet.histories')">
+                        {{ __('Mis Pacientes Asignados (Historial)') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endauth
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
@@ -263,7 +330,7 @@
                     @csrf
 
                     <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Cerrar Sesión') }}
                     </x-responsive-nav-link>
                 </form>
 
