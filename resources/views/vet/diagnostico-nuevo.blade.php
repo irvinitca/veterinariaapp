@@ -70,18 +70,8 @@
                                 @csrf
                                 @method('POST')
                                 <div class="form-group">
-                                    <label for="appointment_id">Cita:</label>
-                                   <input type="text" name="appointment_id" id="appointment_id" class="form-control" value="{{ $appointment->id }}" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="date_resolved">Fecha Resuelto:</label>
-                                    <input type="date" name="date_resolved" id="date_resolved" value="{{ date('Y-m-d') }}" class="form-control"
-                                        required>
-                                </div>
-                                <div class="form-group">
                                     <label for="pet_name">Mascota:</label>
-                                    <input type="text" name="pet_name" id="pet_name" class="form-control" value="{{ $appointment->pet->name }}" readonly>
+                                    <input type="text" name="pet_name" id="pet_name" class="code-highlight" value="{{ $appointment->pet->name }}" readonly>
                                 </div>
 
                                 <div class="form-group">
@@ -109,6 +99,16 @@
                                     <textarea name="medicaments" id="medicaments" class="form-control" rows="3" required style="max-height: 8rem"></textarea>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="appointment_id"></label>
+                                   <input type="hidden" name="appointment_id" id="appointment_id" class="form-control" value="{{ $appointment->id }}" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="date_resolved"></label>
+                                    <input type="hidden" name="date_resolved" id="date_resolved" value="{{ date('Y-m-d') }}" class="form-control"
+                                        required>
+                                </div>
                                 <div class="setfooter">
                                     <button id="back" type="button">Cancelar</button>
                                     <button id="next" type="submit" class="btn btn-secondary">Guardar</button>

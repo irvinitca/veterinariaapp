@@ -162,3 +162,7 @@ h2{
 	 background: #f7b1ab;
 	 border: 1px solid rgba(0, 0, 0, .1);
 }
+.code-highlight {
+    background-color: #364a6e;
+    color: rgb(226, 226, 226);
+}
