@@ -20,8 +20,6 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 //REPORTES
 Route::get('/admin/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->name('admin.pdf-pacientes');
-
 Route::get('/admin/pdf-ingresos', [PDFController::class, 'pdfIngresos'])->name('admin.pdf-ingresos');
-
-
 Route::get('/admin/pdf-canceladas', [PDFController::class, 'pdfCanceladas'])->name('admin.pdf-canceladas');
+Route::get('/admin/pdf-ingresosvet', [PDFController::class, 'pdfIngresosVet'])->name('admin.pdf-ingresosvet');

@@ -49,6 +49,6 @@ Route::middleware([
 Route::post('/admin/generate-pdf-pat', [PDFController::class, 'generatePDFPaciente'])->name('admin.generate-pdf-pat');
 Route::post('/admin/generate-pdf-ingresos', [PDFController::class, 'generatePDFIngresos'])->name('admin.generate-pdf-ingresos');
 Route::post('/admin/generate-pdf-canceladas', [PDFController::class, 'generatePDFCanceladas'])->name('admin.generate-pdf-canceladas');
-
+Route::post('/admin/generate-pdf-ingresosvet', [PDFController::class, 'generatePDFIngresosVet'])->name('admin.generate-pdf-ingresosvet');
 
 

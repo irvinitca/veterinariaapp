@@ -29,6 +29,9 @@
                                     <x-dropdown-link target="_blank" href="{{ route('admin.pdf-ingresos') }}" >
                                         {{ __('Reporte Ingresos Mensuales') }}
                                     </x-dropdown-link>
+                                    <x-dropdown-link target="_blank" href="{{ route('admin.pdf-ingresosvet') }}" >
+                                        {{ __('Reporte Ingresos Por Veterinarios') }}
+                                    </x-dropdown-link>
                                     <x-dropdown-link target="_blank" href="{{ route('admin.pdf-canceladas') }}" >
                                         {{ __('Reporte Citas Canceladas') }}
                                     </x-dropdown-link>
@@ -66,6 +69,8 @@
                                         </x-dropdown-link>
                                         <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresos') }}" >
                                             {{ __('Reporte Ingresos Mensuales') }}
+                                        </x-dropdown-link><x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-ingresosvet') }}" >
+                                            {{ __('Reporte Ingresos Por Veterinarios') }}
                                         </x-dropdown-link>
                                         <x-dropdown-link target="_blank" href="{{ route('recepcion.pdf-canceladas') }}" >
                                             {{ __('Reporte Citas Canceladas') }}
