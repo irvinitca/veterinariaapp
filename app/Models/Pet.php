@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Owner;
+use App\Models\Appointment;
 
 
 class Pet extends Model
@@ -33,6 +34,11 @@ class Pet extends Model
     public function petBreed()
     {
         return $this->belongsTo(Breed::class, 'breed');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 
 }

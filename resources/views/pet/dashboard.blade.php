@@ -20,6 +20,11 @@
             <a href="{{ route('pet.pets-nuevos') }}" class="button-33">Nueva Mascota</a>
         </div>
     </div>
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
 </div>
     <div class="table-wrapper">

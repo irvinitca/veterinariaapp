@@ -121,9 +121,14 @@ class PetController extends Controller
     public function destroy($id)
     {
         $pet = Pet::find($id);
-        $pet->estado=false;
+        $hasActiveAppointments = $pet->appointments()->where('status', 'Activo')->exists();
+        if ($hasActiveAppointments) {
+            return redirect('/pet/dashboard')->with('error', 'No se puede eliminar la mascota porque tiene citas activas.');
+        }
+        $pet->estado = false;
         $pet->save();
 
         return redirect('/pet/dashboard');
     }
+
 }
