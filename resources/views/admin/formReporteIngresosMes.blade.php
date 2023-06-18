@@ -13,7 +13,7 @@
             VeterinariaCIO
           </h1>
           <div class="">
-            <img  class="reportepng" src="/img/reporte-ingresos.png"/>
+            <img  class="reportepng" src="{{ asset('img/reportes-ingresos.png') }}"/>
           </div>
         </div>
         <div class="right-container">
@@ -75,8 +75,9 @@
             </form>
             </div>
             <script>
+                 var baseUrl = "{{ config('app.base_url') }}";
                 document.getElementById("back").addEventListener("click", function() {
-                    window.location.href = "/dashboard";
+                    window.location.href =baseUrl +"dashboard";
                 });
             </script>
 

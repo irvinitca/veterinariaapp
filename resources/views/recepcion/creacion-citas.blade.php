@@ -77,8 +77,9 @@
             </form>
             </div>
             <script>
+                 var baseUrl = "{{ config('app.base_url') }}";
                 document.getElementById("back").addEventListener("click", function() {
-                    window.location.href = "/dashboard";
+                    window.location.href = baseUrl+"dashboard";
                 });
             </script>
 
