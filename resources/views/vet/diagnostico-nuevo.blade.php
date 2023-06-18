@@ -142,7 +142,7 @@
                     method: 'GET',
                     success: function(response) {
                         // aqui se crea el contenido del modal con los datos obtenidos
-                        var modalContent = '<h5># Cita: ' + response.id + '</h5>' +
+                        var modalContent = '<h5># Cita: ' + appointmentId + '</h5>' +
                                     '<div class="container">' +
                                     '<div class="row">' +
                                     '<div class="col-md-6">' +
