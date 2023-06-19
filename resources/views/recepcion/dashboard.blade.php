@@ -61,6 +61,10 @@
                     <td>{{ $appointment->reason }}</td>
                     <td>{{ $appointment->user?->name }}</td>
                     <td>
+                        
+                        <a href="{{ route('appointments.edit', ['id' => $appointment->id]) }}"  class="btn btn-primary iconbtn">
+                            <i class="fas fa-edit"></i>
+                        </a>
                         <a href="#" onclick="confirmCancel({{ $appointment->id }})" class="btn btn-secondary iconbtn">
                             <i class="fas fa-ban"></i>
                         </a>

@@ -17,6 +17,8 @@ Route::get('/citas-nuevas/{pet_id?}', [AppointmentsController::class, 'create'])
 Route::get('/pago-cita/{appointmentId}', [AppointmentsController::class, 'pago'])->name('citas.pago');
 Route::post('/appointments.store', [AppointmentsController::class, 'store'])->name('appointments.store');
 Route::post('/appointments.pay', [AppointmentsController::class, 'pay'])->name('appointments.pay');
+Route::put('/appointments/{id}', [AppointmentsController::class, 'updatex'])->name('appointments.updatex');
+Route::get('/appointments/{id}/edit', [AppointmentsController::class, 'edit'])->name('appointments.edit');
 Route::put('/appointments/{appointmentId}/cancel', [AppointmentsController::class, 'cancel'])->name('appointments.cancel');
 //REPORTES
 Route::get('/recepcion/pdf-pacientes', [PDFController::class, 'pdfPacientes'])->name('recepcion.pdf-pacientes');
@@ -31,6 +33,7 @@ Route::post('/pets.store', [PetController::class, 'store'])->name('pets.store');
 Route::get('/pets/{id}/edit', [PetController::class, 'edit'])->name('pets.edit');
 Route::put('/pets/{id}/', [PetController::class, 'update'])->name('pets.update');
 Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
+
 //PROPIETARIOS
  Route::get('/owner/dashboard', [OwnerController::class, 'index'])->name('owner.dashboard');
  Route::get('/owner/owners-nuevos', [OwnerController::class, 'create'])->name('owner.owners-nuevos');

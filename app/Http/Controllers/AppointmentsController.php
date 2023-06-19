@@ -41,6 +41,69 @@ class AppointmentsController extends Controller
         }
 
     }
+    public function edit($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $pets = Pet::where('estado', 1)->get();
+        $users = User::whereHas('roles', function($q) {
+            $q->where('name', 'Veterinario');
+        })->get();
+    
+        return view('recepcion.edicion-citas', compact('appointment', 'pets', 'users'));
+    }
+    public function updatex(Request $request, $id)
+{
+    // Validación de los datos enviados en el formulario
+    $validatedData = $request->validate([
+        'pet_id' => 'required',
+        'user_id' => 'nullable',
+        'status' => 'nullable',
+        'date_start' => 'required|date',
+        'date_end' => 'nullable|date',
+        'reason' => 'required',
+        'type' => 'required',
+    ]);
+
+    // Obtener la cita existente de la base de datos
+    $appointment = Appointment::findOrFail($id);
+
+    // Actualizar los campos de la cita con los datos validados
+    $appointment->pet_id = $request->input('pet_id');
+    $appointment->user_id = $request->input('user_id');
+    $appointment->date_start = $request->input('date_start');
+    $appointment->reason = $request->input('reason');
+    $appointment->type = $request->input('type');
+
+    $dateStart = Carbon::parse($request->input('date_start'));
+    $dateEnd = $dateStart->addMinutes(30);
+    $appointment->date_end = $dateEnd;
+
+    if ($request->has('user_id')) {
+        // Validar que no exista otra cita dentro del rango date_start y date_end para el usuario
+        $existingAppointment = Appointment::where('user_id', $appointment->user_id)
+            ->where('id', '!=', $appointment->id)
+            ->where(function ($query) use ($dateStart, $dateEnd) {
+                $query->whereBetween('date_start', [$dateStart, $dateEnd])
+                    ->orWhereBetween('date_end', [$dateStart, $dateEnd])
+                    ->orWhere(function ($query) use ($dateStart, $dateEnd) {
+                        $query->where('date_start', '<=', $dateStart)
+                            ->where('date_end', '>=', $dateEnd);
+                    });
+            })
+            ->first();
+
+        if ($existingAppointment) {
+            // Existe otra cita dentro del rango date_start y date_end para el usuario
+            // Puedes manejar el caso de error como desees, por ejemplo, lanzando una excepción o mostrando un mensaje de error al usuario.
+            return back()->with('error', 'Ya existe una cita dentro del rango de fechas especificado para este usuario.');
+        }
+    }
+
+    $appointment->save();
+
+    // Redireccionar a la vista de lista de citas con un mensaje de éxito
+    return redirect()->route('citas')->with('success', 'La cita ha sido actualizada exitosamente.');
+}
 
     public function create($pet_id = null)
     {
