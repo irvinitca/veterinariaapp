@@ -55,14 +55,8 @@ class AdminUserSeeder extends Seeder
         
         $veterinarioUser->assignRole('Veterinario');
 
-        for ($i = 1; $i <= 2; $i++) {
+        for ($i = 1; $i <= 1; $i++) {
             $index = $i;
-
-            $adminUser = User::factory()->create([
-                'email' => $this->addIndexToEmail('adminvt@yopmail.com', $index),
-                'password' => bcrypt('123456789')
-            ]);
-            $adminUser->assignRole('Administrador');
 
             $recepcionUser = User::factory()->create([
                 'email' => $this->addIndexToEmail('recepcionvt@yopmail.com', $index),

@@ -56,7 +56,7 @@ $animalBreeds = array_values($animals); // Obtener las razas de animales
 
 $owners = Owner::all(); // Obtener todos los propietarios existentes
 
-for ($i = 1; $i <= 5; $i++) {
+for ($i = 1; $i <= 3; $i++) {
     $randomTypeIndex = array_rand($animalTypes); // Obtener un índice aleatorio para el tipo
     $randomType = $animalTypes[$randomTypeIndex]; // Obtener el tipo aleatorio
 
